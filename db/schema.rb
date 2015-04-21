@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420115542) do
+ActiveRecord::Schema.define(version: 20150421103736) do
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",          limit: 255, null: false
+    t.integer  "course",        limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "speciality_id", limit: 4
+  end
+
+  add_index "groups", ["speciality_id"], name: "index_groups_on_speciality_id", using: :btree
+
+  create_table "specialities", force: :cascade do |t|
+    t.string   "short_name", limit: 255, null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -28,9 +45,14 @@ ActiveRecord::Schema.define(version: 20150420115542) do
     t.datetime "updated_at"
     t.string   "name",                   limit: 255
     t.string   "full_name",              limit: 255
+    t.integer  "group_id",               limit: 4
+    t.integer  "status",                 limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "groups", "specialities"
+  add_foreign_key "users", "groups"
 end
