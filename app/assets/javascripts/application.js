@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready( function() {
+    changeUserStauts();
+});
+
+function changeUserStauts()
+{
+    if( $("#user_status").find(":selected").val() == 2 )
+    {
+        $("#user_group_id").hide();
+        $("#user_group_id").val(null);
+    }
+    else
+    {
+        $("#user_group_id").show();
+        $("#user_group_id").val(1);
+    }
+}
