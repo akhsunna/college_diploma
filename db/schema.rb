@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421103736) do
+ActiveRecord::Schema.define(version: 20150421120855) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150421103736) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "short_name", limit: 255
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "subjects", ["user_id"], name: "index_subjects_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -54,5 +64,6 @@ ActiveRecord::Schema.define(version: 20150421103736) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "groups", "specialities"
+  add_foreign_key "subjects", "users"
   add_foreign_key "users", "groups"
 end
