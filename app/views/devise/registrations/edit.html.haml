@@ -8,6 +8,7 @@
     .field= f.text_field :name, autofocus: true, placeholder: :name
     .field= f.text_field :full_name, placeholder: :full_name
     .field= f.email_field :email, placeholder: :email
+    .field= f.collection_select(:group_id, Group.all, :id, :name)
 
     %h3 Password settings
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -16,7 +17,7 @@
     .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: :password_confirmation
     .field= f.password_field :current_password, autocomplete: 'off', placeholder: :current_password
     %p
-    = f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'
+    .action= f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'
 
   %div
     %h3 Cancel my account
