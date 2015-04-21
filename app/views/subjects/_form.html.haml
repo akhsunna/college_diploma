@@ -1,0 +1,10 @@
+= form_for @subject do |f|
+  %div= f.label :name
+  %div= f.text_field :name
+
+  %div= f.label :short_name
+  %div= f.text_field :short_name
+
+  %div= f.hidden_field :user_id, :value => current_user.id
+
+  %div= f.submit
