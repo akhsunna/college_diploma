@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
   end
 
   def show
-
+    @subject = Subject.find(params[:id])
   end
 
   def new
@@ -15,14 +15,11 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to user_path(current_user.id), notice: 'The article has been successfully created.'
+      redirect_to user_path(current_user.id), notice: 'The subject has been successfully created.'
     else
       render action: 'new'
     end
   end
-
-
-
 
   private
 
