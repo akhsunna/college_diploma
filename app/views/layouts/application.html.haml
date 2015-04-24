@@ -19,7 +19,7 @@
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
               %li= link_to 'Home', root_path
-              %li= link_to 'Subjects'
+              %li= link_to 'Subjects', subjects_path
               %li.dropdown
                 %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
                   = current_user.name

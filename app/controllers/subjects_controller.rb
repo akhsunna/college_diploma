@@ -1,6 +1,11 @@
 class SubjectsController < ApplicationController
   def index
-
+    if current_user.teacher?
+      @subjects = Subject.all
+      render 'subjects/teacher/index'
+    else
+      render 'subjects/student/index'
+    end
   end
 
   def show
