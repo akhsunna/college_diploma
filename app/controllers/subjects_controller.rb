@@ -1,9 +1,10 @@
 class SubjectsController < ApplicationController
   def index
     if current_user.teacher?
-      @subjects = Subject.all
+      @subjects = Subject.where(user_id: current_user.id)
       render 'subjects/teacher/index'
     else
+      @subjects = Subject.all
       render 'subjects/student/index'
     end
   end
