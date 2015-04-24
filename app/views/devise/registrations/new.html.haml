@@ -11,7 +11,7 @@
 
     .field= f.email_field :email, placeholder: :email
 
-    .field= f.select :status, [['Student',1],['Teacher',2]], {}, { :onChange => 'changeUserStauts();' }
+    .field= f.collection_select(:role_id, Role.all[0..1], :id, :name, :onChange => 'changeUserStatus();')
     .field= f.collection_select(:group_id, Group.all, :id, :name, include_blank: true)
 
     .field= f.password_field :password, autocomplete: 'off', placeholder: :password

@@ -12,23 +12,34 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready( function() {
-    changeUserStauts();
+    changeUserStatus();
 });
 
-function changeUserStauts()
+function changeUserStatus()
 {
-    if( $("#user_status").find(":selected").val() == 2 )
-    {
-        $("#user_group_id").hide();
-        $("#user_group_id").val(null);
-    }
-    else
-    {
-        $("#user_group_id").show();
-        $("#user_group_id").val(1);
+    $("#user_role_id").bind("change", function() {
+        if ($(this).val() == "1") {
+            $("#user_group_id").show();
+            $("#user_group_id").val(1);
+        }
+        else if ($(this).val() == "2") {
+            $("#user_group_id").hide();
+            $("#user_group_id").val(null);
+        }
+    });
+}
+
+function showPassword() {
+    var key_attr = $('#key').attr('type');
+    if(key_attr != 'text') {
+        $('.checkbox').addClass('show');
+        $('#key').attr('type', 'text');
+    } else {
+        $('.checkbox').removeClass('show');
+        $('#key').attr('type', 'password');
     }
 }

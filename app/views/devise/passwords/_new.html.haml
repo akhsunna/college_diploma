@@ -1,0 +1,16 @@
+.modal.fade.forget-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myForgetModalLabel', :role => 'dialog', :tabindex => '-1'}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} ×
+          %span.sr-only Close
+        %h4.modal-title Recovery password
+      .modal-body
+        %p Type your email account
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = devise_error_messages!
+          = f.email_field :email, autofocus: true, class: 'form-control', id: 'recovery-email'
+          .modal-footer
+            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
+            = f.submit 'Recovery', class: 'btn btn-custom'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422074012) do
+ActiveRecord::Schema.define(version: 20150424093255) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20150422074012) do
 
   add_index "items", ["item_id"], name: "index_items_on_item_id", using: :btree
   add_index "items", ["subject_id"], name: "index_items_on_subject_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
+  end
 
   create_table "specialities", force: :cascade do |t|
     t.string   "short_name", limit: 255, null: false
@@ -67,16 +71,18 @@ ActiveRecord::Schema.define(version: 20150422074012) do
     t.string   "name",                   limit: 255
     t.string   "full_name",              limit: 255
     t.integer  "group_id",               limit: 4
-    t.integer  "status",                 limit: 4
+    t.integer  "role_id",                limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "groups", "specialities"
   add_foreign_key "items", "items"
   add_foreign_key "items", "subjects"
   add_foreign_key "subjects", "users"
   add_foreign_key "users", "groups"
+  add_foreign_key "users", "roles"
 end
