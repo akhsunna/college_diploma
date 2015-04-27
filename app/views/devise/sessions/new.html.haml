@@ -15,7 +15,7 @@
               %span.character-checkbox{:onclick => 'showPassword()'}
               %span.label Show password
             = f.submit 'Sign in', class: 'btn btn-custom btn-lg btn-block', id: 'btn-login'
-          %a.forget{ 'data-target' => '.forget-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Forgot your password?
+          %a.forget{ 'data-target' => '.forget-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Forgot your password?
           %a.forget{ href: new_registration_path(resource_name) } Registrate
           %hr
 

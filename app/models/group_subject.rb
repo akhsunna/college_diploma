@@ -1,4 +1,4 @@
 class GroupSubject < ActiveRecord::Base
   belongs_to :subject
-  belongs_to :groups
+  belongs_to :group
 end

@@ -1,13 +1,14 @@
-#ModalGroups.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'myModalLabel', role: 'dialog', tabindex: '-1'}
-  .modal-dialog
+.modal.fade.group-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myGroupModalLabel', role: 'dialog', tabindex: '-1'}
+  .modal-dialog.modal-sm
     .modal-content
       .modal-header
-        %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', :type => 'button'} &times;
+        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} ×
+          %span.sr-only Close
         %h4.modal-title Groups
-      - @groups.each do |group|
-        = group.name
-        %br
-        .modal-footer
-          .actions
-            %button.btn.btn-info{'data-dismiss' => 'modal', :type => 'button'} Save
-            %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel
+      .modal-body
+        - @groups.each do |group|
+          = group.name
+          %br
+      .modal-footer
+        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel
