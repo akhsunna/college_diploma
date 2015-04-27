@@ -11,6 +11,7 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
+    @groups = Subject.groups
   end
 
   def new

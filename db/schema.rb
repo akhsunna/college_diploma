@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424093255) do
+ActiveRecord::Schema.define(version: 20150427085503) do
+
+  create_table "group_subjects", id: false, force: :cascade do |t|
+    t.integer "group_id",   limit: 4, null: false
+    t.integer "subject_id", limit: 4, null: false
+  end
+
+  add_index "group_subjects", ["group_id"], name: "fk_rails_bbfe43ba26", using: :btree
+  add_index "group_subjects", ["subject_id"], name: "fk_rails_0e7377d240", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -79,6 +87,8 @@ ActiveRecord::Schema.define(version: 20150424093255) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
+  add_foreign_key "group_subjects", "groups"
+  add_foreign_key "group_subjects", "subjects"
   add_foreign_key "groups", "specialities"
   add_foreign_key "items", "items"
   add_foreign_key "items", "subjects"

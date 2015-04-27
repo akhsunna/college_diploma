@@ -1,2 +1,3 @@
 = @subject.name
-= link_to 'Add folder'
+%a.forget{ 'data-target' => '#ModalGroups', 'data-toggle' => 'modals', href: 'javascript:;' } Groups
+= render 'subjects/modals/groups'
