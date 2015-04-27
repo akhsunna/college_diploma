@@ -4,13 +4,20 @@ class SubjectsController < ApplicationController
       @subjects = Subject.where(user_id: current_user.id)
       render 'subjects/teacher/index'
     else
-      @subjects = Subject.all
+      @subjects = current_user.group.subjects.all
       render 'subjects/student/index'
     end
   end
 
   def show
     @subject = Subject.find(params[:id])
+    if current_user.teacher?
+      @groups = Subject.find(params[:id]).groups
+      render 'subjects/teacher/show'
+    else
+      render 'subjects/student/show'
+    end
+
   end
 
   def new

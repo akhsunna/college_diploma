@@ -1,0 +1,14 @@
+.modal.fade.group-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myGroupModalLabel', role: 'dialog', tabindex: '-1'}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} ×
+          %span.sr-only Close
+        %h4.modal-title Groups
+      .modal-body
+        - @groups.each do |group|
+          = group.name
+          %br
+      .modal-footer
+        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel

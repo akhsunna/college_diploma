@@ -22,6 +22,18 @@
               %li= link_to 'Subjects', subjects_path
               %li.dropdown
                 %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
+                  _
+                  %span.caret
+                %ul.dropdown-menu{role: 'menu'}
+                  - if current_user.teacher?
+                    - @subjects = Subject.where(user_id: current_user.id)
+                  - else
+                    - @subjects = current_user.group.subjects.all
+                  - @subjects.each do |subject|
+                    %li
+                      %a=link_to subject.name, subject_path(subject.id)
+              %li.dropdown
+                %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
                   = current_user.name
                   %span.caret
                 %ul.dropdown-menu{role: 'menu'}
