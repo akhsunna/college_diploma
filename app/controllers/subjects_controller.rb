@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+
   def index
     if current_user.teacher?
       @subjects = Subject.where(user_id: current_user.id)
@@ -11,13 +12,24 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
+    @parent = @subject.items.find(params[:parent] || @subject.root_id)
+
+    unless @parent.root?
+      current_folder, @current_path = @parent, [@parent]
+      while current_folder.parent_id != @subject.root_id
+        @current_path.push(current_folder.parent)
+        current_folder = current_folder.parent
+      end
+    end
+
     if current_user.teacher?
       @groups = Subject.find(params[:id]).groups
+      @folder = @subject.items.new
       render 'subjects/teacher/show'
     else
       render 'subjects/student/show'
     end
-
+    cookies[:current_subject] = @subject.id
   end
 
   def new
@@ -26,12 +38,19 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(subject_params)
-
     if @subject.save
+      add_root @subject
       redirect_to user_path(current_user.id), notice: 'The subject has been successfully created.'
     else
       render action: 'new'
     end
+  end
+
+  def add_root(subject)
+    @item = subject.items.new(name: subject.short_name)
+    @item.save!
+    subject.root_id = @item.id
+    subject.save!
   end
 
   private

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def main
     if user_signed_in?
       render current_user.teacher? ? 'users/teacher/home' : 'users/student/home'
