@@ -12,8 +12,6 @@
 %a.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
 = render 'items/new_folder'
 
-
-
 .container
   .row
     .col-md-12
@@ -36,10 +34,13 @@
                 %td type
                 %td= item.updated_at.strftime('%d/%m/%Y')
                 %td
-                  %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Edit' }
-                    %button.btn.btn-primary.btn-xs{ 'data-target' => '#edit', 'data-title' => 'Edit', 'data-toggle' => 'modal' }
-                      %span.glyphicon.glyphicon-pencil
+                  = link_to edit_item_path(item), remote: true do
+                    .btn.btn-sm.btn-info
+                      %i.fa.fa-edit
                 %td
-                  %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
-                    %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
-                      %span.glyphicon.glyphicon-trash
+                  -#%p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
+                  -#  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
+                  -#    %span.glyphicon.glyphicon-trash
+                  = link_to item_delete_path(item), remote: true do
+                    .btn.btn-sm.btn-danger
+                      %i.fa.fa-trash

@@ -5,7 +5,6 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-
     - if user_signed_in?
       %nav.navbar.navbar-default
         .container
@@ -55,3 +54,4 @@
 
 
     = yield
+    #modals.modal.fade
