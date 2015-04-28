@@ -6,8 +6,8 @@ class ItemsController < ApplicationController
 
   def create_folder
     @subject = Subject.find(cookies[:current_subject])
-    @subject.items.create(folder_params.merge(subject: @subject))
-    redirect_to subject_path(cookies[:current_subject]), notice: 'The folder has been successfully created.'
+    @item = @subject.items.create(folder_params.merge(subject: @subject))
+    redirect_to subject_path(id: @subject.id, parent: @item.parent_id), notice: 'The folder has been successfully created.'
   end
 
   private

@@ -9,4 +9,28 @@
   .row
     .col-md-12
       .table-responsive
-        = render 'subjects/modals/content'
+        %table{ id: '#mytable', class: 'table table-bordred table-striped' }
+          %thead
+            %th
+              %input{ id: 'checkall', type:'checkbox' }/
+            %th Name
+            %th Type
+            %th Date
+            %th Edit
+            %th Delete
+          %tbody
+            - @subject.items.where(parent_id: @parent).each do |item|
+              %tr
+                %td
+                  %input{ class: 'checkthis', type: 'checkbox' }/
+                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
+                %td type
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td
+                  %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Edit' }
+                    %button.btn.btn-primary.btn-xs{ 'data-target' => '#edit', 'data-title' => 'Edit', 'data-toggle' => 'modal' }
+                      %span.glyphicon.glyphicon-pencil
+                %td
+                  %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
+                    %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
+                      %span.glyphicon.glyphicon-trash
