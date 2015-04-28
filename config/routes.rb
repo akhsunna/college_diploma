@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :subjects
 
+  resources :items
+  post 'create_folder', to: 'items#create_folder'
+  post 'create_file', to: 'items#create_file'
+
   root 'users#main'
 
   # The priority is based upon order of creation: first created -> highest priority.
