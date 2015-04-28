@@ -14,6 +14,14 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(params[:id])
     @parent = @subject.items.find(params[:parent] || @subject.root_id)
 
+    unless @parent.root?
+      current_folder, @current_path = @parent, [@parent]
+      while current_folder.parent_id != @subject.root_id
+        @current_path.push(current_folder.parent)
+        current_folder = current_folder.parent
+      end
+    end
+
     if current_user.teacher?
       @groups = Subject.find(params[:id]).groups
       @folder = @subject.items.new

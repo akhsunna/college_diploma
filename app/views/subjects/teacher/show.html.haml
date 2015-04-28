@@ -1,9 +1,18 @@
-= @subject.name
+= link_to @subject.name, subject_path(@subject.id)
+- if !@parent.root?
+  - @current_path.reverse_each do |item|
+    >
+    = link_to item.name, subject_path(id: @subject.id, parent: item)
+
+%br
+
 %a.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Groups
 = render 'subjects/modals/groups'
 
 %a.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
 = render 'items/new_folder'
+
+
 
 .container
   .row
