@@ -9,27 +9,4 @@
   .row
     .col-md-12
       .table-responsive
-        %table{ id: '#mytable', class: 'table table-bordred table-striped' }
-          %thead
-            %th
-              %input{ id: 'checkall', type:'checkbox' }/
-            %th Name
-            %th Type
-            %th Date
-            %th Edit
-            %th Delete
-          %tbody
-            %tr
-              %td
-                %input{ class: 'checkthis', type: 'checkbox' }/
-              %td Filename.txt
-              %td type
-              %td 26/04/2015
-              %td
-                %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Edit' }
-                  %button.btn.btn-primary.btn-xs{ 'data-target' => '#edit', 'data-title' => 'Edit', 'data-toggle' => 'modal' }
-                    %span.glyphicon.glyphicon-pencil
-              %td
-                %p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
-                  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
-                    %span.glyphicon.glyphicon-trash
+        = render 'subjects/modals/content'

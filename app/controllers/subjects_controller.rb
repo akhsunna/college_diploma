@@ -12,6 +12,8 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
+    @parent = @subject.items.find(params[:parent] || @subject.root_id)
+
     if current_user.teacher?
       @groups = Subject.find(params[:id]).groups
       @folder = @subject.items.new
@@ -19,9 +21,7 @@ class SubjectsController < ApplicationController
     else
       render 'subjects/student/show'
     end
-
     cookies[:current_subject] = @subject.id
-
   end
 
   def new

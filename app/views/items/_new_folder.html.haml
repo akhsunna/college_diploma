@@ -10,7 +10,7 @@
         = form_for @folder, url: create_folder_path do |f|
           %div= f.label :name
           %div= f.text_field :name
-          -#%div= f.hidden_field :parent_id, value: 1
+          %div= f.hidden_field :parent_id, value: @parent.id
           .modal-footer
             %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
             = f.submit 'Save', class: 'btn btn-custom'
