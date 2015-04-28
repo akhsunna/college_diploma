@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h3 Delete Item
+    .modal-body
+      %ul.errors
+        Are you sure you wish to delete
+        %b= @item.name
+        ?
+      .modal-footer
+        = link_to 'Yes, Delete This Item', item_path(@item), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'No, Please Dont', '', class: 'btn', data: { dismiss: 'modal' }
