@@ -5,8 +5,8 @@
     .modal-body
       %ul.errors
         Are you sure you wish to delete
-        %b= @item.name
+        %b= @folder.name
         ?
       .modal-footer
-        = link_to 'Yes, Delete This Item', item_path(@item), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'Yes, Delete This Item', folder_path(@folder), method: :delete, remote: true, class: 'btn btn-danger'
         = link_to 'No, Please Dont', '', class: 'btn', data: { dismiss: 'modal' }

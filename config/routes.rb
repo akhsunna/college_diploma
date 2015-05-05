@@ -6,12 +6,9 @@ Rails.application.routes.draw do
 
   resources :subjects
 
-  resources :items do
+  resources :folders do
     get 'delete'
   end
-  post 'create_folder', to: 'items#create_folder'
-  post 'create_file', to: 'items#create_file'
-  # get 'folder_show', to: 'items#folder_show'
 
   root 'users#main'
 

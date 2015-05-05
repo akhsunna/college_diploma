@@ -1,10 +1,10 @@
 $("ul.errors").html("")
-<% if @item.errors.any? %>
+<% if @folder.errors.any? %>
   <% @item.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
 
   $("#modals").modal("hide");
-    location = "<%= subject_path(id: cookies[:current_subject], parent: @item.parent_id) %>";
+    location = "<%= subject_path(id: cookies[:current_subject], parent: @folder.parent_id) %>";
 <% end %>

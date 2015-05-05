@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
-    @parent = @subject.items.find(params[:parent] || @subject.root_id)
+    @parent = @subject.folders.find(params[:parent] || @subject.root_id)
 
     unless @parent.root?
       current_folder, @current_path = @parent, [@parent]
@@ -24,7 +24,7 @@ class SubjectsController < ApplicationController
 
     if current_user.teacher?
       @groups = Subject.find(params[:id]).groups
-      @folder = @subject.items.new
+      @folder = @subject.folders.new
       render 'subjects/teacher/show'
     else
       render 'subjects/student/show'
@@ -47,9 +47,9 @@ class SubjectsController < ApplicationController
   end
 
   def add_root(subject)
-    @item = subject.items.new(name: subject.short_name)
-    @item.save!
-    subject.root_id = @item.id
+    @folder = subject.folders.new(name: subject.short_name)
+    @folder.save!
+    subject.root_id = @folder.id
     subject.save!
   end
 

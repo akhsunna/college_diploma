@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ItemTest < ActiveSupport::TestCase
+class FolderTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

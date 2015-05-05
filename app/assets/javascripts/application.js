@@ -21,12 +21,12 @@ $(document).ready( function() {
 
 function changeUserStatus()
 {
-    $("#user_role_id").bind("change", function() {
-        if ($(this).val() == "1") {
+    $("#user_role").bind("change", function() {
+        if ($(this).val() == "student") {
             $("#user_group_id").show();
             $("#user_group_id").val(1);
         }
-        else if ($(this).val() == "2") {
+        else if ($(this).val() == "teacher") {
             $("#user_group_id").hide();
             $("#user_group_id").val(null);
         }

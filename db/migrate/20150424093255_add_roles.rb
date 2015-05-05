@@ -1,15 +1,9 @@
 class AddRoles < ActiveRecord::Migration
   def up
-    query = <<-SQL
-      INSERT INTO roles (name) VALUES ('student'), ('teacher'), ('admin');
-    SQL
-    ActiveRecord::Base.connection.execute(query)
+    add_column :users, :role, :string
   end
 
   def down
-    query = <<-SQL
-      DELETE FROM roles;
-    SQL
-    ActiveRecord::Base.connection.execute(query)
+    remove_column :users, :role
   end
 end

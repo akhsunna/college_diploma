@@ -7,7 +7,7 @@
           %span.sr-only Close
         %h4.modal-title New Folder
       .modal-body
-        = form_for @folder, url: create_folder_path do |f|
+        = form_for @folder do |f|
           %div= f.label :name
           %div= f.text_field :name
           %div= f.hidden_field :parent_id, value: @parent.id

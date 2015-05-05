@@ -1,9 +1,9 @@
 .modal-dialog
   .modal-content
     .modal-header
-      %h3= "Editing #{@item.name}"
+      %h3= "Editing #{@folder.name}"
 
-    = form_for @item, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
+    = form_for @folder, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
       .modal-body
         %ul.errors
         .control-group
