@@ -1,6 +1,7 @@
 class Folder < ActiveRecord::Base
   belongs_to :parent, class_name: 'Folder'
   has_many :folders
+  has_many :sub_files
   belongs_to :subject, class_name: 'Subject'
   #
   #

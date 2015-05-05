@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get 'delete'
   end
 
+  resources :sub_files do
+    get 'delete'
+  end
+
   root 'users#main'
 
   # The priority is based upon order of creation: first created -> highest priority.

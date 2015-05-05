@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery.remotipart
 //= require_tree .
 
 $(document).ready( function() {

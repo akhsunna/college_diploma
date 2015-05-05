@@ -25,6 +25,7 @@ class SubjectsController < ApplicationController
     if current_user.teacher?
       @groups = Subject.find(params[:id]).groups
       @folder = @subject.folders.new
+      @sub_file = @subject.sub_files.new
       render 'subjects/teacher/show'
     else
       render 'subjects/student/show'

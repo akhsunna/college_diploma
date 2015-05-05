@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428074300) do
+ActiveRecord::Schema.define(version: 20150505094727) do
 
   create_table "folders", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 20150428074300) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sub_files", force: :cascade do |t|
+    t.integer  "subject_id",           limit: 4
+    t.integer  "parent_id",            limit: 4
+    t.string   "content_file_name",    limit: 255, null: false
+    t.string   "content_content_type", limit: 255, null: false
+    t.integer  "content_file_size",    limit: 4,   null: false
+    t.datetime "content_updated_at",               null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "sub_files", ["subject_id"], name: "fk_rails_e3641a157d", using: :btree
 
   create_table "subjects", force: :cascade do |t|
     t.string   "short_name", limit: 255
@@ -86,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150428074300) do
   add_foreign_key "group_subjects", "groups"
   add_foreign_key "group_subjects", "subjects"
   add_foreign_key "groups", "specialities"
+  add_foreign_key "sub_files", "subjects"
   add_foreign_key "subjects", "users"
   add_foreign_key "users", "groups"
 end

@@ -12,6 +12,9 @@
 %a.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
 = render 'folders/new_folder'
 
+%a.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New file
+= render 'sub_files/new_file'
+
 .container
   .row
     .col-md-12
@@ -38,5 +41,21 @@
                   -#  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
                   -#    %span.glyphicon.glyphicon-trash
                   = link_to folder_delete_path(item), remote: true do
+                    .btn.btn-sm.btn-danger
+                      %i.fa.fa-trash
+            - @subject.sub_files.where(parent_id: @parent).each do |item|
+              %tr
+                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
+                %td file
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td
+                  = link_to edit_sub_file_path(item), remote: true do
+                    .btn.btn-sm.btn-info
+                      %i.fa.fa-edit
+                %td
+                  -#%p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
+                  -#  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
+                  -#    %span.glyphicon.glyphicon-trash
+                  = link_to sub_file_delete_path(item), remote: true do
                     .btn.btn-sm.btn-danger
                       %i.fa.fa-trash

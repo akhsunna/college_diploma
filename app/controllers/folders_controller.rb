@@ -23,7 +23,7 @@ class FoldersController < ApplicationController
   end
 
   def delete
-    @folder = Folder.find(params[:item_id])
+    @folder = Folder.find(params[:folder_id])
   end
 
   def destroy

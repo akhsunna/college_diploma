@@ -1,6 +1,6 @@
 $("ul.errors").html("")
 <% if @folder.errors.any? %>
-  <% @item.errors.full_messages.each do |message| %>
+  <% @folder.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
