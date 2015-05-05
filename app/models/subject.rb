@@ -5,5 +5,6 @@ class Subject < ActiveRecord::Base
   belongs_to :user
   has_many :group_subjects
   has_many :groups, through: :group_subjects
-  has_many :items
+  has_many :folders
+  has_many :sub_files
 end

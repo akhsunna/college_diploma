@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h3 Delete folder
+    .modal-body
+      %ul.errors
+        Are you sure you wish to delete
+        %b= @folder.name
+        ?
+      .modal-footer
+        = link_to 'Yes, delete this folder', folder_path(@folder), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'No, please dont', '', class: 'btn', data: { dismiss: 'modal' }

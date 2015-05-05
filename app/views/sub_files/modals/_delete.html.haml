@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h3 Delete file
+    .modal-body
+      %ul.errors
+        Are you sure you wish to delete
+        %b= @sub_file.name
+        ?
+      .modal-footer
+        = link_to 'Yes, delete this file', sub_file_path(@sub_file), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'No, please dont', '', class: 'btn', data: { dismiss: 'modal' }

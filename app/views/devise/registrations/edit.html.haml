@@ -9,7 +9,7 @@
     .field= f.text_field :full_name, placeholder: :full_name
     .field= f.email_field :email, placeholder: :email
 
-    .field= f.collection_select(:role_id, Role.all[0..1], :id, :name, :onChange => 'changeUserStatus();')
+    .field= f.select(:role, [['Student', 'student'], ['Teacher', 'teacher']], {}, onChange: 'changeUserStatus();')
     .field= f.collection_select(:group_id, Group.all, :id, :name, include_blank: true)
 
 

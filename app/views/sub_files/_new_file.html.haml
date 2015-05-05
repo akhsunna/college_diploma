@@ -1,15 +1,14 @@
-.modal.fade.folder-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myFolderModalLabel', role: 'dialog', tabindex: '-1'}
+.modal.fade.file-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myFileModalLabel', role: 'dialog', tabindex: '-1'}
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
           %span.sr-only Close
-        %h4.modal-title New Folder
+        %h4.modal-title New file
       .modal-body
-        = form_for @folder, url: create_folder_path do |f|
-          %div= f.label :name
-          %div= f.text_field :name
+        = form_for @sub_file do |f|
+          %div= f.file_field :content
           %div= f.hidden_field :parent_id, value: @parent.id
           .modal-footer
             %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel

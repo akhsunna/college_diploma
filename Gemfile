@@ -21,6 +21,9 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'font-awesome-rails'
 
+# Paperclip
+gem 'paperclip', '~> 4.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -32,6 +35,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Haml
 gem 'haml'
+
+
+gem 'remotipart', '~> 1.2'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

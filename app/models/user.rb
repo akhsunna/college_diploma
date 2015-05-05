@@ -7,25 +7,26 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   belongs_to :group
-  belongs_to :role
 
-  def student?
-    return true if Role.find(role_id).name == 'student'
-    false
+  ROLE_ADMIN = 'admin'
+  ROLE_TEACHER = 'teacher'
+  ROLE_STUDENT = 'student'
+
+  def admin?
+    role == ROLE_ADMIN
   end
 
   def teacher?
-    return true if Role.find(role_id).name == 'teacher'
-    false
+    role == ROLE_TEACHER
   end
 
-  class << self
-    def students
-      User.where(role_id: Role.find(name: 'student').id)
-    end
-
-    def teachers
-      User.where(role_id: Role.find(name: 'teacher').id)
-    end
+  def student?
+    role == ROLE_STUDENT
   end
+
+  scope :admins, ->{ where role: ROLE_ADMIN }
+  scope :teachers, ->{ where role: ROLE_TEACHER }
+  scope :students, ->{ where role: ROLE_STUDENT }
+  scope :users, ->{ where role: [ROLE_STUDENT, ROLE_TEACHER] }
+
 end
