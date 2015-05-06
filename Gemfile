@@ -19,6 +19,7 @@ gem 'devise'
 
 # Bootstrap and sass
 gem 'bootstrap-sass', '~> 3.3.4'
+gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 
 # Paperclip

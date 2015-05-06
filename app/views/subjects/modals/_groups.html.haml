@@ -1,5 +1,5 @@
 .modal.fade.group-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myGroupModalLabel', role: 'dialog', tabindex: '-1'}
-  .modal-dialog.modal-sm
+  .modal-dialog
     .modal-content
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
@@ -7,8 +7,12 @@
           %span.sr-only Close
         %h4.modal-title Groups
       .modal-body
-        - @groups.each do |group|
-          = group.name
-          %br
+        .well{ style: 'max-height: 300px;overflow: auto;' }
+          %ul.list-group.checked-list-box
+            - @groups.each do |group|
+              - if @sub_groups.include?(group)
+                %li.list-group-item{'data-checked' => 'true'}= group.name
+              -else
+                %li.list-group-item= group.name
       .modal-footer
         %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel

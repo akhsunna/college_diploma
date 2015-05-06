@@ -23,7 +23,8 @@ class SubjectsController < ApplicationController
     end
 
     if current_user.teacher?
-      @groups = Subject.find(params[:id]).groups
+      @groups = Group.all
+      @sub_groups = Subject.find(params[:id]).groups
       @folder = @subject.folders.new
       @sub_file = @subject.sub_files.new
       render 'subjects/teacher/show'
@@ -41,7 +42,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     if @subject.save
       add_root @subject
-      redirect_to user_path(current_user.id), notice: 'The subject has been successfully created.'
+      redirect_to subjects_path, notice: 'The subject has been successfully created.'
     else
       render action: 'new'
     end
