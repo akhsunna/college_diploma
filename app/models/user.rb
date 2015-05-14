@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
     role == ROLE_STUDENT
   end
 
-  scope :admins, ->{ where role: ROLE_ADMIN }
   scope :teachers, ->{ where role: ROLE_TEACHER }
   scope :students, ->{ where role: ROLE_STUDENT }
   scope :users, ->{ where role: [ROLE_STUDENT, ROLE_TEACHER] }

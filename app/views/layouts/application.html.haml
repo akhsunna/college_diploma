@@ -14,34 +14,43 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            .navbar-brand= link_to 'Project name'
+            -#.navbar-brand= link_to 'Project name'
+            %img{ src: '/assets/hpk.png', style: 'height:50px' }
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
-              %li= link_to 'Home', root_path
-              %li= link_to 'Subjects', subjects_path
-              %li.dropdown
-                %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
-                  _
-                  %span.caret
-                %ul.dropdown-menu{role: 'menu'}
-                  - if current_user.teacher?
-                    - @subjects = Subject.where(user_id: current_user.id)
-                  - else
-                    - @subjects = current_user.group.subjects.all
-                  - @subjects.each do |subject|
-                    %li
-                      %a=link_to subject.name, subject_path(subject.id)
+              - if current_user.admin?
+                %li= link_to 'Users', users_path
+              - if current_user.student?
+                %li.dropdown
+                  %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
+                    _
+                    %span.caret
+                  %ul.dropdown-menu{role: 'menu'}
+                    - if current_user.teacher?
+                      - @subjects = Subject.where(user_id: current_user.id)
+                    - else
+                      - @subjects = current_user.group.subjects.all
+                    - @subjects.each do |subject|
+                      %li
+                        %a=link_to subject.name, subject_path(subject.id)
+              - else
+                %li= link_to 'Subjects', subjects_path
+            %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
                   = current_user.name
                   %span.caret
                 %ul.dropdown-menu{role: 'menu'}
                   %li
-                    %a=link_to 'Profile', user_path(current_user.id)
+                    - if current_user.admin?
+                      %a=link_to 'change passwotd'
+                    - else
+                      %a=link_to 'Settings', edit_user_registration_path
                   %li
                     %a=link_to 'Inbox'
                   %li
-                    %a=link_to 'Users', users_path
+                    - if !current_user.admin?
+                      %a=link_to 'Users', users_path
                   %li.divider
                   %li= link_to 'Sign out', destroy_user_session_path, method: :delete
 

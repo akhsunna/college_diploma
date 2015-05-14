@@ -1,16 +1,14 @@
 .modal-dialog
   .modal-content
     .modal-header
-      %h3= "Editing #{@sub_file.name}"
+      .modal-title-subj
+        %div{style: 'float:left'} Editing
+        %div{style: 'color: #f0ad4e'}= '"' + @sub_file.name + '"'
 
     = form_for @sub_file, remote: true, html: { multipart: true, class: 'form-horizontal', style: 'display:inline;' }, authenticity_token: true do |f|
       .modal-body
-        %ul.errors
-        .control-group
-          -#= f.label :name, class: 'control-label'
-          .controls
-            = f.file_field :content
+        = f.file_field :content, class: 'btn btn-default btn-file', title: 'Search for a file to add'
       .modal-footer
-        = form_authenticity_token
-        = f.submit class: 'btn btn-primary'
+        -#= form_authenticity_token
+        = f.submit class: 'btn btn-warning'
         = link_to 'Cancel', '', class: 'btn', data: {dismiss: 'modal'}
