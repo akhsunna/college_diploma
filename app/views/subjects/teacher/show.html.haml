@@ -44,7 +44,7 @@
                     %i.fa.fa-trash
           - @subject.sub_files.where(parent_id: @parent).each do |item|
             %tr
-              %td= link_to item.name, subject_path(id: @subject.id, parent: item)
+              %td= link_to item.name, item.content.url, download: item.name
               %td file
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td

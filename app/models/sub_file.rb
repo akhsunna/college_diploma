@@ -2,7 +2,7 @@ class SubFile < ActiveRecord::Base
   belongs_to :parent, class_name: 'Folder'
   belongs_to :subject, class_name: 'Subject'
 
-  has_attached_file :content, :path => ':rails_root/public/files/:filename'
+  has_attached_file :content, :url => '/files/:filename', path: ':rails_root/public/files/:filename'
   do_not_validate_attachment_file_type :content
 
   validates_attachment_presence :content, :message => 'Blank'
