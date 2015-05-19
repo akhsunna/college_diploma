@@ -32,6 +32,21 @@ class SubFilesController < ApplicationController
     @sub_file.destroy
   end
 
+  def show
+    @sub_file = SubFile.find(params[:id])
+    if @sub_file.format == 'image'
+      render 'sub_files/show/show_image'
+    elsif @sub_file.format == 'video'
+      render 'sub_files/show/show_video'
+    elsif @sub_file.format == 'document'
+      render 'sub_files/show/show_doc'
+    elsif @sub_file.format == 'code'
+      render 'sub_files/show/show_code'
+    else
+
+    end
+  end
+
   private
 
   def file_params

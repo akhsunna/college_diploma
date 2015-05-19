@@ -15,7 +15,7 @@ class SubFile < ActiveRecord::Base
   end
 
   IMAGE_TYPES = ['png','jpeg','jpg','']
-  DOC_TYPES = ['doc','docx']
+  DOC_TYPES = ['doc','docx','msword']
   CODE_TYPES = ['rb','py','javascript','js','octet-stream']
   VIDEO_TYPES = ['mp4']
   AUDIO_TYPES = ['mp3']
