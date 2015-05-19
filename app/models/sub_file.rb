@@ -14,4 +14,30 @@ class SubFile < ActiveRecord::Base
     content_file_name
   end
 
+  IMAGE_TYPES = ['png','jpeg','jpg','']
+  DOC_TYPES = ['doc','docx']
+  CODE_TYPES = ['rb','py','javascript','js','octet-stream']
+  VIDEO_TYPES = ['mp4']
+  AUDIO_TYPES = ['mp3']
+  ARCHIVE_TYPES = ['rar','x-rar','zip']
+
+  def format
+    t = content_content_type.split('/').last
+    if IMAGE_TYPES.include?(t)
+      'image'
+    elsif DOC_TYPES.include?(t)
+      'document'
+    elsif CODE_TYPES.include?(t)
+      'code'
+    elsif VIDEO_TYPES.include?(t)
+      'video'
+    elsif AUDIO_TYPES.include?(t)
+      'audio'
+    elsif ARCHIVE_TYPES.include?(t)
+      'archive'
+    else
+      'file'
+    end
+  end
+
 end

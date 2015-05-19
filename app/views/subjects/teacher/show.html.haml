@@ -26,6 +26,7 @@
           %th Name
           %th Type
           %th Date
+          %th D-load
           %th Edit
           %th Delete
         %tbody
@@ -34,6 +35,7 @@
               %td= link_to item.name, subject_path(id: @subject.id, parent: item)
               %td folder
               %td= item.updated_at.strftime('%d/%m/%Y')
+              %td= '-'
               %td
                 = link_to edit_folder_path(item), remote: true do
                   .btn.btn-sm.btn-warning
@@ -45,8 +47,12 @@
           - @subject.sub_files.where(parent_id: @parent).each do |item|
             %tr
               %td= link_to item.name, item.content.url, download: item.name
-              %td file
+              %td= item.format
               %td= item.updated_at.strftime('%d/%m/%Y')
+              %td
+                = link_to item.content.url, download: item.name do
+                  .btn.btn-sm.btn-subj
+                    %i.fa.fa-download
               %td
                 = link_to edit_sub_file_path(item), remote: true do
                   .btn.btn-sm.btn-warning
