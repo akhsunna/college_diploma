@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505094727) do
+ActiveRecord::Schema.define(version: 20150526185150) do
 
   create_table "folders", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150505094727) do
     t.datetime "content_updated_at",               null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "path_viewing",         limit: 255
   end
 
   add_index "sub_files", ["subject_id"], name: "fk_rails_e3641a157d", using: :btree

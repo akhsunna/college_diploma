@@ -18,6 +18,9 @@
 
 $(document).ready( function() {
     changeUserStatus();
+
+    $('input[type=file]').bootstrapFileInput();
+    $('.file-inputs').bootstrapFileInput();
 });
 
 function changeUserStatus()
@@ -44,6 +47,8 @@ function showPassword() {
         $('#key').attr('type', 'password');
     }
 }
+
+
 
 
 
@@ -140,10 +145,6 @@ $(function () {
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
 });
-
-
-
-
 
 
 

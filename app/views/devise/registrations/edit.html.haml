@@ -1,29 +1,33 @@
-.container.signin
+.container
+  .row
+    .col-xs-4
 
-  = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
-    = devise_error_messages!
+      = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+        = devise_error_messages!
 
-    %h3 Your Account Settings
+        %h3 Your Account Settings
 
-    .field= f.text_field :name, autofocus: true, placeholder: :name
-    .field= f.text_field :full_name, placeholder: :full_name
-    .field= f.email_field :email, placeholder: :email
-
-    .field= f.select(:role, [['Student', 'student'], ['Teacher', 'teacher']], {}, onChange: 'changeUserStatus();')
-    .field= f.collection_select(:group_id, Group.all, :id, :name, include_blank: true)
+        = f.text_field :name, autofocus: true, placeholder: :name, class: 'form-control'
+        = f.text_field :full_name, placeholder: :full_name, class: 'form-control'
+        = f.email_field :email, placeholder: :email, class: 'form-control'
 
 
-    %h3 Password settings
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %div= "Currently waiting confirmation for: #{resource.unconfirmed_email}"
-    .field= f.password_field :password, autocomplete: 'off', placeholder: :password
-    .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: :password_confirmation
-    .field= f.password_field :current_password, autocomplete: 'off', placeholder: :current_password
-    %p
-    .action= f.submit 'Update', class: 'btn btn-lg btn-primary btn-block'
+        = f.select(:role, [['Student', 'student'], ['Teacher', 'teacher']], {},
+          { onChange: 'changeUserStatus();', class: 'btn btn-default dropdown-toggle' } )
+        = f.collection_select(:group_id, Group.all, :id, :name, include_blank: true, class: 'btn btn-default dropdown-toggle')
 
-  %div
-    %h3 Cancel my account
-    = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete
-    %p
-    .action= link_to 'Back', :back
+
+        %h3 Password settings
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div= "Currently waiting confirmation for: #{resource.unconfirmed_email}"
+        = f.password_field :password, autocomplete: 'off', placeholder: :password, class: 'form-control'
+        = f.password_field :password_confirmation, autocomplete: 'off', placeholder: :password_confirmation, class: 'form-control'
+        = f.password_field :current_password, autocomplete: 'off', placeholder: :current_password, class: 'form-control'
+        %p
+        = f.submit 'Update', class: 'btn btn-default'
+
+      %div
+        %h3 Cancel my account
+        = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
+        %p
+        .action= link_to 'Back', :back

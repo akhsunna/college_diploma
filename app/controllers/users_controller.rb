@@ -2,7 +2,9 @@ class UsersController < ApplicationController
 
   def main
     if user_signed_in?
-      render current_user.teacher? ? 'users/teacher/home' : 'users/student/home'
+      render 'users/teacher/home' if current_user.teacher?
+      render 'users/student/home' if current_user.student?
+      render 'users/admin/home' if current_user.admin?
     else
       redirect_to new_user_session_path
     end
@@ -13,6 +15,18 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if current_user.admin?
+      @students = User.students
+      @teachers = User.teachers
+      @groups = Group.all
+      @users = User.all
+      @specialities = Speciality.all
+      render 'users/admin/index'
+    else
+      @users = User.all
+    end
+
+
+
   end
 end

@@ -1,61 +1,62 @@
-= link_to @subject.name, subject_path(@subject.id)
-- if !@parent.root?
-  - @current_path.reverse_each do |folder|
-    >
-    = link_to folder.name, subject_path(id: @subject.id, parent: folder)
-
-%br
-
-%a.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Groups
-= render 'subjects/modals/groups'
-
-%a.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
-= render 'folders/new_folder'
-
-%a.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New file
-= render 'sub_files/new_file'
-
 .container
+  .folder-path
+    = link_to @subject.name, subject_path(@subject.id), style: 'text-decoration:none'
+    - if !@parent.root?
+      - @current_path.reverse_each do |folder|
+        >
+        = link_to folder.name, subject_path(id: @subject.id, parent: folder), style: 'text-decoration:none'
+
+
+
+  .pull-right
+    %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Groups
+    = render 'subjects/modals/groups'
+
+    %a.btn.btn-subj.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
+    = render 'folders/new_folder'
+
+    %a.btn.btn-subj.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New file
+    = render 'sub_files/new_file'
+
   .row
     .col-md-12
-      .table-responsive
-        %table{ id: '#mytable', class: 'table table-bordred table-striped' }
-          %thead
-            %th Name
-            %th Type
-            %th Date
-            %th Edit
-            %th Delete
-          %tbody
-            - @subject.folders.where(parent_id: @parent).each do |item|
-              %tr
-                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-                %td folder
-                %td= item.updated_at.strftime('%d/%m/%Y')
-                %td
-                  = link_to edit_folder_path(item), remote: true do
-                    .btn.btn-sm.btn-info
-                      %i.fa.fa-edit
-                %td
-                  -#%p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
-                  -#  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
-                  -#    %span.glyphicon.glyphicon-trash
-                  = link_to folder_delete_path(item), remote: true do
-                    .btn.btn-sm.btn-danger
-                      %i.fa.fa-trash
-            - @subject.sub_files.where(parent_id: @parent).each do |item|
-              %tr
-                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-                %td file
-                %td= item.updated_at.strftime('%d/%m/%Y')
-                %td
-                  = link_to edit_sub_file_path(item), remote: true do
-                    .btn.btn-sm.btn-info
-                      %i.fa.fa-edit
-                %td
-                  -#%p{ 'data-placement' => 'top', 'data-toggle' => 'tooltip', title: 'Delete' }
-                  -#  %button.btn.btn-danger.btn-xs{ 'data-target' => '#delete', 'data-title' => 'Delete', 'data-toggle' => 'modal'}
-                  -#    %span.glyphicon.glyphicon-trash
-                  = link_to sub_file_delete_path(item), remote: true do
-                    .btn.btn-sm.btn-danger
-                      %i.fa.fa-trash
+      %table{ id: '#mytable', class: 'table table-bordred table-striped' }
+        %thead
+          %th Name
+          %th Type
+          %th Date
+          %th D-load
+          %th Edit
+          %th Delete
+        %tbody
+          - @subject.folders.where(parent_id: @parent).each do |item|
+            %tr
+              %td= link_to item.name, subject_path(id: @subject.id, parent: item)
+              %td folder
+              %td= item.updated_at.strftime('%d/%m/%Y')
+              %td= '-'
+              %td
+                = link_to edit_folder_path(item), remote: true do
+                  .btn.btn-sm.btn-warning
+                    %i.fa.fa-edit
+              %td
+                = link_to folder_delete_path(item), remote: true do
+                  .btn.btn-sm.btn-danger
+                    %i.fa.fa-trash
+          - @subject.sub_files.where(parent_id: @parent).each do |item|
+            %tr
+              %td= link_to item.name, sub_file_path(item.id)
+              %td= item.format
+              %td= item.updated_at.strftime('%d/%m/%Y')
+              %td
+                = link_to item.content.url, download: item.name do
+                  .btn.btn-sm.btn-subj
+                    %i.fa.fa-download
+              %td
+                = link_to edit_sub_file_path(item), remote: true do
+                  .btn.btn-sm.btn-warning
+                    %i.fa.fa-edit
+              %td
+                = link_to sub_file_delete_path(item), remote: true do
+                  .btn.btn-sm.btn-danger
+                    %i.fa.fa-trash

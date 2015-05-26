@@ -1,7 +1,9 @@
 .modal-dialog
   .modal-content
     .modal-header
-      %h3 Delete folder
+      .modal-title-subj
+        Delete
+        = '"' + @folder.name + '"'
     .modal-body
       %ul.errors
         Are you sure you wish to delete

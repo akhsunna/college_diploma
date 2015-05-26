@@ -8,7 +8,7 @@
         %h4.modal-title New file
       .modal-body
         = form_for @sub_file do |f|
-          %div= f.file_field :content
+          = f.file_field :content, title: 'Search for a file to add'
           %div= f.hidden_field :parent_id, value: @parent.id
           .modal-footer
             %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel

@@ -37,8 +37,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Haml
 gem 'haml'
 
-
+# Rails jQuery File Uploads
 gem 'remotipart', '~> 1.2'
+
+gem 'docsplit'
 
 
 # Use ActiveModel has_secure_password

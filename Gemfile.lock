@@ -69,6 +69,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    docsplit (0.7.6)
     erubis (2.7.0)
     execjs (2.5.2)
     font-awesome-rails (4.3.0.0)
@@ -183,6 +184,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  docsplit
   font-awesome-rails
   haml
   jbuilder (~> 2.0)
