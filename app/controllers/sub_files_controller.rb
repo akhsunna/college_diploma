@@ -9,7 +9,25 @@ class SubFilesController < ApplicationController
   def create
     @subject = Subject.find(cookies[:current_subject])
     @sub_file = @subject.sub_files.create(file_params.merge(subject: @subject))
-    redirect_to subject_path(id: @subject.id, parent: @sub_file.parent_id), notice: 'The file has been successfully created.'
+    if @sub_file.save
+      add_path_viewing @sub_file if @sub_file.format == 'document' || @sub_file.format == 'pdf'
+      redirect_to subject_path(id: @subject.id, parent: @sub_file.parent_id), notice: 'The file has been successfully created.'
+    else
+      render action: 'new'
+    end
+  end
+
+  def add_path_viewing(sub_file)
+    if @sub_file.format == 'pdf'
+      sub_file.path_viewing = sub_file.content.url.to_s
+    else
+      @path = sub_file.content.path.to_s.split('/')[0...-1].join('/')
+      @url = sub_file.content.url.to_s.split('/')[0...-1].join('/')
+      Docsplit.extract_pdf(sub_file.content.path.to_s, output: @path)
+      @name = sub_file.name.split('.').first + '.pdf'
+      sub_file.path_viewing = @url + '/' + @name
+    end
+    sub_file.save!
   end
 
   def edit
@@ -38,7 +56,7 @@ class SubFilesController < ApplicationController
       render 'sub_files/show/show_image'
     elsif @sub_file.format == 'video'
       render 'sub_files/show/show_video'
-    elsif @sub_file.format == 'document'
+    elsif @sub_file.format == 'document' || @sub_file.format == 'pdf'
       render 'sub_files/show/show_doc'
     elsif @sub_file.format == 'code'
       render 'sub_files/show/show_code'

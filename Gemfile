@@ -40,6 +40,8 @@ gem 'haml'
 # Rails jQuery File Uploads
 gem 'remotipart', '~> 1.2'
 
+gem 'docsplit'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

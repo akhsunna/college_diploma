@@ -27,6 +27,8 @@ class SubFile < ActiveRecord::Base
       'image'
     elsif DOC_TYPES.include?(t)
       'document'
+    elsif t == 'pdf'
+      'pdf'
     elsif CODE_TYPES.include?(t)
       'code'
     elsif VIDEO_TYPES.include?(t)
