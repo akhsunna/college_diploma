@@ -21,9 +21,10 @@
               - if current_user.admin?
                 %li= link_to 'Users', users_path
               - if current_user.student?
+                %li= link_to 'Favourite', favourites_path
                 %li.dropdown
                   %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
-                    _
+                    Subjects
                     %span.caret
                   %ul.dropdown-menu{role: 'menu'}
                     - if current_user.teacher?

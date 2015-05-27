@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get 'delete'
   end
 
+  resources :favourites
+
   root 'users#main'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 
   belongs_to :group
 
+  has_many :fav_files
+  has_many :fav_folders
+  has_many :sub_files, through: :fav_files
+  has_many :folders, through: :fav_folders
+
   ROLE_ADMIN = 'admin'
   ROLE_TEACHER = 'teacher'
   ROLE_STUDENT = 'student'

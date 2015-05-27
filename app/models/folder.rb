@@ -3,6 +3,8 @@ class Folder < ActiveRecord::Base
   has_many :folders
   has_many :sub_files
   belongs_to :subject, class_name: 'Subject'
+
+  has_many :fav_folders
   #
   #
   # has_attached_file :content, path: ':rails_root/uploads/:subject_id'

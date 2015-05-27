@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526185150) do
+ActiveRecord::Schema.define(version: 20150527175533) do
+
+  create_table "fav_files", id: false, force: :cascade do |t|
+    t.integer "user_id",     limit: 4, null: false
+    t.integer "sub_file_id", limit: 4, null: false
+  end
+
+  add_index "fav_files", ["sub_file_id"], name: "fk_rails_21d8b58702", using: :btree
+  add_index "fav_files", ["user_id"], name: "fk_rails_b9eba7a359", using: :btree
+
+  create_table "fav_folders", id: false, force: :cascade do |t|
+    t.integer "user_id",   limit: 4, null: false
+    t.integer "folder_id", limit: 4, null: false
+  end
+
+  add_index "fav_folders", ["folder_id"], name: "fk_rails_88d513ceb2", using: :btree
+  add_index "fav_folders", ["user_id"], name: "fk_rails_a66d22e7d9", using: :btree
 
   create_table "folders", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -96,6 +112,10 @@ ActiveRecord::Schema.define(version: 20150526185150) do
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "fav_files", "sub_files"
+  add_foreign_key "fav_files", "users"
+  add_foreign_key "fav_folders", "folders"
+  add_foreign_key "fav_folders", "users"
   add_foreign_key "folders", "subjects"
   add_foreign_key "group_subjects", "groups"
   add_foreign_key "group_subjects", "subjects"
