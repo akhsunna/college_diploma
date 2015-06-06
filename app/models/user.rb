@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   belongs_to :group
+  has_many :subjects
 
-  has_many :fav_files
-  has_many :fav_folders
+  has_many :fav_files, dependent: :delete_all
+  has_many :fav_folders, dependent: :delete_all
   has_many :sub_files, through: :fav_files
   has_many :folders, through: :fav_folders
 

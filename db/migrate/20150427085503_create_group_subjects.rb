@@ -4,8 +4,6 @@ class CreateGroupSubjects < ActiveRecord::Migration
       t.references :group, :null => false
       t.references :subject, :null => false
     end
-    add_foreign_key :group_subjects, :groups
-    add_foreign_key :group_subjects, :subjects
   end
 
   def down
