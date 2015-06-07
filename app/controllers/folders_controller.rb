@@ -18,7 +18,7 @@ class FoldersController < ApplicationController
 
   def update
     @folders = Folder.all
-    @folder= Folder.find(params[:id])
+    @folder = Folder.find(params[:id])
     @folder.update_attributes(folder_params)
   end
 
