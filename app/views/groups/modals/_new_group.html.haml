@@ -13,8 +13,7 @@
           %div= f.label :course
           = f.text_field :course, class: 'form-control'
           %div= f.label :speciality
-          %div= f.hidden_field :speciality_id, value: '1'
-          -#= f.collection_select(:speciality_id, Speciality.all, :id, :short_name, class: 'btn btn-default dropdown-toggle')
+          = f.collection_select(:speciality_id, Speciality.all, :id, :short_name, class: 'btn btn-default dropdown-toggle')
           .modal-footer
             %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
             = f.submit 'Save', class: 'btn btn-custom'
