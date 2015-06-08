@@ -32,6 +32,18 @@ class FoldersController < ApplicationController
     @folder.destroy
   end
 
+  def favourite
+    @folder = Folder.find(params[:folder_id])
+    if @folder.favourite? current_user
+      # FavFolder.where(folder_id: @folder.id, user_id: current_user.id).first.destroy
+      current_user.fav_folders.find_by_folder_id(@folder.id).destroy
+    else
+      @fav_folder = current_user.fav_folders.create(folder_id: @folder.id)
+    end
+
+    respond_with @folder
+  end
+
   private
 
     def folder_params

@@ -65,6 +65,18 @@ class SubFilesController < ApplicationController
     end
   end
 
+  def favourite
+    @sub_file = FSubFile.find(params[:sub_file_id])
+    if @sub_file.favourite? current_user
+      # FavFolder.where(folder_id: @folder.id, user_id: current_user.id).first.destroy
+      current_user.fav_files.find_by_sub_file_id(@sub_file.id).destroy
+    else
+      @fav_file = current_user.fav_files.create(sub_file_id: @sub_file.id)
+    end
+
+    respond_with @sub_file
+  end
+
   private
 
   def file_params

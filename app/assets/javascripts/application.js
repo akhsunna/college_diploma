@@ -48,6 +48,14 @@ function showPassword() {
     }
 }
 
+//$('#btn-fav').click(function() {
+//    $(this).toggleClass('btn-gray');
+//});
+
+$('div.btn.btn-sm').click(function() {
+    $(this).addClass('btn-gray');
+    //event.preventDefault();
+});
 
 
 

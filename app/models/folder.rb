@@ -12,6 +12,6 @@ class Folder < ActiveRecord::Base
   end
 
   def favourite? (user)
-    FavFolder.any?{ |item| item.sub_file_id==id && item.user_id==user.id }
+    FavFolder.any?{ |item| item.folder_id==id && item.user_id==user.id }
   end
 end

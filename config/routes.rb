@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
   resources :folders do
     get 'delete'
+    put 'favourite'
   end
 
   resources :sub_files do
     get 'delete'
+    put 'favourite'
   end
 
   resources :favourites

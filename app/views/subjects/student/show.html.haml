@@ -7,6 +7,8 @@
 
   %br
 
+  %div.btn.btn-sm KJKJ
+
   .row
     .col-md-12
       %table{ id: '#mytable', class: 'table table-bordred table-striped' }
@@ -24,12 +26,12 @@
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td= '-'
               %td
-                = link_to edit_folder_path(item), remote: true do
+                = link_to folder_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
                   - if item.favourite? current_user
-                    .btn.btn-sm.btn-warning
+                    #btn-fav.btn.btn-sm.btn-warning
                       %i.fa.fa-star
                   - else
-                    .btn.btn-sm.btn-warning.btn-gray
+                    #btn-fav.btn.btn-sm.btn-warning.btn-favo.btn-gray
                       %i.fa.fa-star
           - @subject.sub_files.where(parent_id: @parent).each do |item|
             %tr
