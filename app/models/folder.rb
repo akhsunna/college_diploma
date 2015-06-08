@@ -10,4 +10,8 @@ class Folder < ActiveRecord::Base
   def root?
     parent_id == nil
   end
+
+  def favourite? (user)
+    FavFolder.any?{ |item| item.sub_file_id==id && item.user_id==user.id }
+  end
 end

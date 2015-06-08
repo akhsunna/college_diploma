@@ -12,6 +12,7 @@
           %th Speciality
           %th Edit
           %th Delete
+          %th Invite codes
         %tbody
           - @groups.each do |group|
             %tr
@@ -20,9 +21,13 @@
               %td= group.speciality.short_name
               %td
                 = link_to edit_group_path(group), remote: true do
-                  .btn.btn-sm.btn-info
+                  .btn.btn-sm.btn-warning
                     %i.fa.fa-edit
               %td
                 = link_to root_path, remote: true do
                   .btn.btn-sm.btn-danger
                     %i.fa.fa-trash
+              %td
+                = link_to root_path, remote: true do
+                  .btn.btn-sm.btn-info
+                    %i.fa.fa-eye

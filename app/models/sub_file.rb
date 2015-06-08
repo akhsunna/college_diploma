@@ -44,4 +44,9 @@ class SubFile < ActiveRecord::Base
     end
   end
 
+  def favourite? (user)
+    FavFile.any?{ |item| item.sub_file_id==id && item.user_id==user.id }
+  end
+
+
 end
