@@ -43,7 +43,7 @@
                   .btn.btn-sm.btn-subj
                     %i.fa.fa-download
               %td
-                = link_to edit_sub_file_path(item), remote: true do
+                = link_to sub_file_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
                   - if item.favourite? current_user
                     .btn.btn-sm.btn-warning
                       %i.fa.fa-star

@@ -26,6 +26,7 @@
           %th Type
           %th Date
           %th D-load
+          %th Visible
           %th Edit
           %th Delete
         %tbody
@@ -35,6 +36,14 @@
               %td folder
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td= '-'
+              %td
+                = link_to folder_visible_path(item), method: :put, remote: true, data: { id: item.id }  do
+                  - if item.visible
+                    .btn.btn-sm.btn-info
+                      %i.fa.fa-eye
+                  - else
+                    .btn.btn-sm.btn-info.btn-gray
+                      %i.fa.fa-eye
               %td
                 = link_to edit_folder_path(item), remote: true do
                   .btn.btn-sm.btn-warning
@@ -52,6 +61,14 @@
                 = link_to item.content.url, download: item.name do
                   .btn.btn-sm.btn-subj
                     %i.fa.fa-download
+              %td
+                = link_to sub_file_visible_path(item), method: :put, remote: true, data: { id: item.id } do
+                  - if item.visible
+                    .btn.btn-sm.btn-info
+                      %i.fa.fa-eye
+                  - else
+                    .btn.btn-sm.btn-info.btn-gray
+                      %i.fa.fa-eye
               %td
                 = link_to edit_sub_file_path(item), remote: true do
                   .btn.btn-sm.btn-warning

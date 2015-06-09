@@ -44,6 +44,12 @@ class FoldersController < ApplicationController
     respond_with @folder
   end
 
+  def visible
+    @folder = Folder.find(params[:folder_id])
+    @folder.visible = !@folder.visible
+    @folder.save!
+  end
+
   private
 
     def folder_params
