@@ -86,7 +86,7 @@ class SubFilesController < ApplicationController
   private
 
   def file_params
-    params.require(:sub_file).permit(:content, :parent_id)
+    params.require(:sub_file).permit(:content, :parent_id, :visible)
   end
 
 end

@@ -11,6 +11,7 @@
           %div= f.label :name
           = f.text_field :name, class: 'form-control'
           %div= f.hidden_field :parent_id, value: @parent.id
+          %div= f.label :visible
           = f.check_box :visible
           .modal-footer
             %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel

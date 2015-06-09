@@ -19,7 +19,7 @@
           %th D-load
           %th Fav
         %tbody
-          - @subject.folders.where(parent_id: @parent).each do |item|
+          - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr
               %td= link_to item.name, subject_path(id: @subject.id, parent: item)
               %td folder
@@ -33,7 +33,7 @@
                   - else
                     #btn-fav.btn.btn-sm.btn-warning.btn-favo.btn-gray
                       %i.fa.fa-star
-          - @subject.sub_files.where(parent_id: @parent).each do |item|
+          - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr
               %td= link_to item.name, sub_file_path(item.id)
               %td= item.format

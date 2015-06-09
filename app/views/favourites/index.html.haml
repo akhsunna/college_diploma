@@ -20,7 +20,7 @@
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td= '-'
               %td
-                = link_to edit_folder_path(item), remote: true do
+                = link_to folder_path(item), method: :delete, remote: true do
                   .btn.btn-sm.btn-warning
                     %i.fa.fa-star
           - @fav_files.each do |item|
@@ -33,6 +33,6 @@
                   .btn.btn-sm.btn-subj
                     %i.fa.fa-download
               %td
-                = link_to edit_sub_file_path(item), remote: true do
+                = link_to sub_file_path(item), method: :delete, remote: true do
                   .btn.btn-sm.btn-warning
                     %i.fa.fa-star
