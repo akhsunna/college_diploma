@@ -2,6 +2,8 @@ class SubFile < ActiveRecord::Base
   belongs_to :parent, class_name: 'Folder'
   belongs_to :subject, class_name: 'Subject'
 
+  has_many :fav_files, dependent: :delete_all
+
   has_attached_file :content, :url => '/files/:filename', path: ':rails_root/public/files/:filename'
   do_not_validate_attachment_file_type :content
 
@@ -41,5 +43,10 @@ class SubFile < ActiveRecord::Base
       'file'
     end
   end
+
+  def favourite? (user)
+    FavFile.any?{ |item| item.sub_file_id==id && item.user_id==user.id }
+  end
+
 
 end

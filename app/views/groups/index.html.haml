@@ -1,0 +1,33 @@
+.container
+
+  %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New group
+  = render 'groups/modals/new_group'
+
+  .row
+    .col-md-12
+      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+        %thead
+          %th Name
+          %th Course
+          %th Speciality
+          %th Edit
+          %th Delete
+          %th Invite codes
+        %tbody
+          - @groups.each do |group|
+            %tr
+              %td= group.name
+              %td= group.course
+              %td= group.speciality.short_name
+              %td
+                = link_to edit_group_path(group), remote: true do
+                  .btn.btn-sm.btn-warning
+                    %i.fa.fa-edit
+              %td
+                = link_to root_path, remote: true do
+                  .btn.btn-sm.btn-danger
+                    %i.fa.fa-trash
+              %td
+                = link_to root_path, remote: true do
+                  .btn.btn-sm.btn-info
+                    %i.fa.fa-eye

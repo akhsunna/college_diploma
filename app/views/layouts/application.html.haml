@@ -18,18 +18,19 @@
             %img{ src: '/assets/hpk.png', style: 'height:50px' }
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
+
               - if current_user.admin?
-                %li= link_to 'Users', users_path
+                %li= link_to 'Groups', groups_path
+                %li= link_to 'Students', students_path
+                %li= link_to 'Teachers', teachers_path
               - if current_user.student?
+                %li= link_to 'Favourites', favourites_path
                 %li.dropdown
                   %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}
-                    _
+                    Subjects
                     %span.caret
                   %ul.dropdown-menu{role: 'menu'}
-                    - if current_user.teacher?
-                      - @subjects = Subject.where(user_id: current_user.id)
-                    - else
-                      - @subjects = current_user.group.subjects.all
+                    - @subjects = current_user.group.subjects.all
                     - @subjects.each do |subject|
                       %li
                         %a=link_to subject.name, subject_path(subject.id)

@@ -65,10 +65,28 @@ class SubFilesController < ApplicationController
     end
   end
 
+  def favourite
+    @sub_file = SubFile.find(params[:sub_file_id])
+    if @sub_file.favourite? current_user
+      # FavFolder.where(folder_id: @folder.id, user_id: current_user.id).first.destroy
+      current_user.fav_files.find_by_sub_file_id(@sub_file.id).destroy
+    else
+      @fav_file = current_user.fav_files.create(sub_file_id: @sub_file.id)
+    end
+
+    respond_with @sub_file
+  end
+
+  def visible
+    @sub_file = SubFile.find(params[:sub_file_id])
+    @sub_file.visible = !@sub_file.visible
+    @sub_file.save!
+  end
+
   private
 
   def file_params
-    params.require(:sub_file).permit(:content, :parent_id)
+    params.require(:sub_file).permit(:content, :parent_id, :visible)
   end
 
 end

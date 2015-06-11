@@ -4,9 +4,12 @@ class SubjectsController < ApplicationController
     if current_user.teacher?
       @subjects = Subject.where(user_id: current_user.id)
       render 'subjects/teacher/index'
-    else
+    elsif current_user.student?
       @subjects = current_user.group.subjects.all
       render 'subjects/student/index'
+    else
+      @subjects = Subject.all
+      render 'subjects/admin/index'
     end
   end
 

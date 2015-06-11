@@ -1,28 +1,54 @@
-= link_to @subject.name, subject_path(@subject.id)
-- if !@parent.root?
-  - @current_path.reverse_each do |folder|
-    >
-    = link_to folder.name, subject_path(id: @subject.id, parent: folder)
-
-%br
-
 .container
+  = link_to @subject.name, subject_path(@subject.id)
+  - if !@parent.root?
+    - @current_path.reverse_each do |folder|
+      >
+      = link_to folder.name, subject_path(id: @subject.id, parent: folder)
+
+  %br
+
+  %div.btn.btn-sm KJKJ
+
   .row
     .col-md-12
-      .table-responsive
-        %table{ id: '#mytable', class: 'table table-bordred table-striped' }
-          %thead
-            %th Name
-            %th Type
-            %th Date
-          %tbody
-            - @subject.folders.where(parent_id: @parent).each do |item|
-              %tr
-                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-                %td folder
-                %td= item.updated_at.strftime('%d/%m/%Y')
-            - @subject.sub_files.where(parent_id: @parent).each do |item|
-              %tr
-                %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-                %td file
-                %td= item.updated_at.strftime('%d/%m/%Y')
+      %table{ id: '#mytable', class: 'table table-bordred table-striped' }
+        %thead
+          %th Name
+          %th Type
+          %th Date
+          %th D-load
+          %th Fav
+        %tbody
+          - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).each do |item|
+            %tr
+              %td= link_to item.name, subject_path(id: @subject.id, parent: item)
+              %td folder
+              %td= item.updated_at.strftime('%d/%m/%Y')
+              %td= '-'
+              %td
+                = link_to folder_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
+                  - if item.favourite? current_user
+                    #btn-fav.btn.btn-sm.btn-warning
+                      %i.fa.fa-star
+                  - else
+                    #btn-fav.btn.btn-sm.btn-warning.btn-favo.btn-gray
+                      %i.fa.fa-star
+          - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).each do |item|
+            %tr
+              %td= link_to item.name, sub_file_path(item.id)
+              %td= item.format
+              %td= item.updated_at.strftime('%d/%m/%Y')
+              %td
+                = link_to item.content.url, download: item.name do
+                  .btn.btn-sm.btn-subj
+                    %i.fa.fa-download
+              %td
+                = link_to sub_file_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
+                  - if item.favourite? current_user
+                    .btn.btn-sm.btn-warning
+                      %i.fa.fa-star
+                  - else
+                    .btn.btn-sm.btn-warning.btn-gray
+                      %i.fa.fa-star
+
+

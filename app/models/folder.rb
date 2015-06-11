@@ -1,16 +1,17 @@
 class Folder < ActiveRecord::Base
   belongs_to :parent, class_name: 'Folder'
+  belongs_to :subject, class_name: 'Subject'
+
   has_many :folders
   has_many :sub_files
-  belongs_to :subject, class_name: 'Subject'
-  #
-  #
-  # has_attached_file :content, path: ':rails_root/uploads/:subject_id'
-  # do_not_validate_attachment_file_type :content
-  # validates_attachment_size :content, :less_than => 10.megabytes
-  # validates_format_of :content_file_name, with: /\A[^\/\\\?\*:|"<>]+\z/, message: 'invalid characters'
+
+  has_many :fav_folders, dependent: :delete_all
 
   def root?
     parent_id == nil
+  end
+
+  def favourite? (user)
+    FavFolder.any?{ |item| item.folder_id==id && item.user_id==user.id }
   end
 end

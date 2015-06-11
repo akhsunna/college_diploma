@@ -6,7 +6,6 @@ class CreateSubFiles < ActiveRecord::Migration
       t.attachment :content, null: false
       t.timestamps null: false
     end
-    add_foreign_key :sub_files, :subjects
   end
 
   def down

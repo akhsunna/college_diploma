@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526185150) do
+ActiveRecord::Schema.define(version: 20150608140241) do
+
+  create_table "fav_files", force: :cascade do |t|
+    t.integer "user_id",     limit: 4, null: false
+    t.integer "sub_file_id", limit: 4, null: false
+  end
+
+  create_table "fav_folders", force: :cascade do |t|
+    t.integer "user_id",   limit: 4, null: false
+    t.integer "folder_id", limit: 4, null: false
+  end
 
   create_table "folders", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150526185150) do
     t.datetime "updated_at"
     t.integer  "parent_id",  limit: 4
     t.integer  "subject_id", limit: 4
+    t.boolean  "visible",    limit: 1
   end
 
   add_index "folders", ["subject_id"], name: "index_folders_on_subject_id", using: :btree
@@ -27,9 +38,6 @@ ActiveRecord::Schema.define(version: 20150526185150) do
     t.integer "group_id",   limit: 4, null: false
     t.integer "subject_id", limit: 4, null: false
   end
-
-  add_index "group_subjects", ["group_id"], name: "fk_rails_bbfe43ba26", using: :btree
-  add_index "group_subjects", ["subject_id"], name: "fk_rails_0e7377d240", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -40,6 +48,12 @@ ActiveRecord::Schema.define(version: 20150526185150) do
   end
 
   add_index "groups", ["speciality_id"], name: "index_groups_on_speciality_id", using: :btree
+
+  create_table "invite_codes", force: :cascade do |t|
+    t.string  "role",     limit: 255
+    t.integer "group_id", limit: 4
+    t.string  "token",    limit: 255
+  end
 
   create_table "specialities", force: :cascade do |t|
     t.string   "short_name", limit: 255, null: false
@@ -58,9 +72,8 @@ ActiveRecord::Schema.define(version: 20150526185150) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "path_viewing",         limit: 255
+    t.boolean  "visible",              limit: 1
   end
-
-  add_index "sub_files", ["subject_id"], name: "fk_rails_e3641a157d", using: :btree
 
   create_table "subjects", force: :cascade do |t|
     t.string   "short_name", limit: 255
@@ -96,11 +109,7 @@ ActiveRecord::Schema.define(version: 20150526185150) do
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "folders", "subjects"
-  add_foreign_key "group_subjects", "groups"
-  add_foreign_key "group_subjects", "subjects"
   add_foreign_key "groups", "specialities"
-  add_foreign_key "sub_files", "subjects"
   add_foreign_key "subjects", "users"
   add_foreign_key "users", "groups"
 end
