@@ -10,7 +10,7 @@ class SubFilesController < ApplicationController
     @subject = Subject.find(cookies[:current_subject])
     @sub_file = @subject.sub_files.create(file_params.merge(subject: @subject))
     if @sub_file.save
-      add_path_viewing @sub_file if @sub_file.format == 'document' || @sub_file.format == 'pdf'
+      add_path_viewing @sub_file if ['document','pdf','presentation'].include?(@sub_file.format)
       redirect_to subject_path(id: @subject.id, parent: @sub_file.parent_id), notice: 'The file has been successfully created.'
     else
       render action: 'new'
@@ -20,12 +20,18 @@ class SubFilesController < ApplicationController
   def add_path_viewing(sub_file)
     if @sub_file.format == 'pdf'
       sub_file.path_viewing = sub_file.content.url.to_s
-    else
+    elsif @sub_file.format == 'document'
       @path = sub_file.content.path.to_s.split('/')[0...-1].join('/')
       @url = sub_file.content.url.to_s.split('/')[0...-1].join('/')
       Docsplit.extract_pdf(sub_file.content.path.to_s, output: @path)
       @name = sub_file.name.split('.').first + '.pdf'
       sub_file.path_viewing = @url + '/' + @name
+    else
+      @name = sub_file.name.split('.').first
+      @path = sub_file.content.path.to_s.split('/')[0...-1].join('/') + '/' + @name
+      @url = sub_file.content.url.to_s.split('/')[0...-1].join('/') + '/' + @name
+      sub_file.path_viewing = @url
+      Docsplit.extract_images(sub_file.content.path.to_s, size: '550x', format: [:jpg], output: @path)
     end
     sub_file.save!
   end
@@ -60,6 +66,10 @@ class SubFilesController < ApplicationController
       render 'sub_files/show/show_doc'
     elsif @sub_file.format == 'code'
       render 'sub_files/show/show_code'
+    elsif @sub_file.format == 'presentation'
+      @slides = Dir.glob("#{Rails.root}/public" + @sub_file.path_viewing + '/*')
+      @slides.map!{|item| item=item.partition("public")[2]}
+      render 'sub_files/show/show_presentation'
     else
 
     end

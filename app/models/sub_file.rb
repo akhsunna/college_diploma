@@ -22,6 +22,7 @@ class SubFile < ActiveRecord::Base
   VIDEO_TYPES = ['mp4']
   AUDIO_TYPES = ['mp3']
   ARCHIVE_TYPES = ['rar','x-rar','zip']
+  PRESENTATION_TYPES = ['vnd.openxmlformats-officedocument.presentationml.presentation', 'vnd.ms-powerpoint']
 
   def format
     t = content_content_type.split('/').last
@@ -29,6 +30,8 @@ class SubFile < ActiveRecord::Base
       'image'
     elsif DOC_TYPES.include?(t)
       'document'
+    elsif PRESENTATION_TYPES.include?(t)
+      'presentation'
     elsif t == 'pdf'
       'pdf'
     elsif CODE_TYPES.include?(t)
