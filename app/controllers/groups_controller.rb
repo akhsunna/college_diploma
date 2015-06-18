@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  respond_to :html, :js
+
   def index
     @groups = Group.all
     @group = Group.new
@@ -22,6 +24,17 @@ class GroupsController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  def subject
+    @group = Group.find(params[:group_id])
+    @subject = Subject.find(cookies[:current_subject])
+    if @group.access? @subject
+      GroupSubject.where(group_id: @group.id, subject_id: @subject.id).first.destroy
+    else
+      @new_group_subject = @subject.group_subjects.create(group_id: @group.id)
+    end
+    respond_with @group
   end
 
   private

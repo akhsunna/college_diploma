@@ -2,9 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, :students, :teachers, :groups
-
-  resources :subjects
+  resources :users, :students, :teachers, :subjects
 
   resources :folders do
     get 'delete'
@@ -16,6 +14,10 @@ Rails.application.routes.draw do
     get 'delete'
     put 'favourite'
     put 'visible'
+  end
+
+  resources :groups do
+    put 'subject'
   end
 
   resources :favourites

@@ -7,4 +7,8 @@ class Group < ActiveRecord::Base
   has_many :subjects, through: :group_subjects
 
   has_many :invite_codes
+
+  def access? (subject)
+    GroupSubject.any?{ |item| item.group_id==id && item.subject_id==subject.id }
+  end
 end
