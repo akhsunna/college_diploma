@@ -2,15 +2,15 @@
   .modal-content
     .modal-header
       .modal-title-subj
-        %div{style: 'float:left'} Editing
+        %div{style: 'float:left'} Редагування
         %div{style: 'color: #f0ad4e'}= '"' + @folder.name + '"'
 
     = form_for @folder, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
       .modal-body
         %ul.errors
         .control-group
-          = f.label :name, class: 'control-label'
+          = f.label 'Назва', class: 'control-label'
           = f.text_field :name, class: 'form-control'
       .modal-footer
-        = f.submit class: 'btn btn-warning'
-        = link_to 'Cancel', '', class: 'btn', data: {dismiss: 'modal'}
+        = f.submit 'Зберегти', class: 'btn btn-warning'
+        = link_to 'Скасувати', '', class: 'btn', data: {dismiss: 'modal'}

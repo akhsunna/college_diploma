@@ -4,14 +4,14 @@
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
-          %span.sr-only Close
-        %h4.modal-title New file
+          %span.sr-only Закрити
+        %h4.modal-title Новий файл
       .modal-body
         = form_for @sub_file do |f|
-          = f.file_field :content, title: 'Search for a file to add'
-          %div= f.label :visible
+          = f.file_field :content, title: 'Вибрати файл'
+          %div= f.label 'Видимий'
           = f.check_box :visible
           %div= f.hidden_field :parent_id, value: @parent.id
           .modal-footer
-            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
-            = f.submit 'Save', class: 'btn btn-custom'
+            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Сказувати
+            = f.submit 'Зберегти', class: 'btn btn-custom'

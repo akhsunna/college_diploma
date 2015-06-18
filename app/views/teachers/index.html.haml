@@ -1,14 +1,14 @@
 .container
 
-  %a.btn.btn-subj Invite codes
+  %a.btn.btn-subj Invite-коди
 
   .row
     .col-md-12
       %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
         %thead
-          %th Full name
-          %th Name
-          %th Delete
+          %th Повне імя
+          %th Логін
+          %th Видалити
         %tbody
           - @teachers.each do |user|
             = link_to user_path(user.id) do

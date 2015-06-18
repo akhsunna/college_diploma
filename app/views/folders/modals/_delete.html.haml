@@ -2,13 +2,13 @@
   .modal-content
     .modal-header
       .modal-title-subj
-        Delete
+        Видалення
         = '"' + @folder.name + '"'
     .modal-body
       %ul.errors
-        Are you sure you wish to delete
+        Ви впевнені, що бажаєте видалити
         %b= @folder.name
         ?
       .modal-footer
-        = link_to 'Yes, delete this folder', folder_path(@folder), method: :delete, remote: true, class: 'btn btn-danger'
-        = link_to 'No, please dont', '', class: 'btn', data: { dismiss: 'modal' }
+        = link_to 'Так, видалити цю теку', folder_path(@folder), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'Ні, не видаляти', '', class: 'btn', data: { dismiss: 'modal' }

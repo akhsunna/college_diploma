@@ -5,20 +5,20 @@
 
     %h3{ :class => 'form-signin-heading' }Please sign up
 
-    .field= f.text_field :name, autofocus: true, placeholder: :name
+    .field= f.text_field :name, autofocus: true, placeholder: 'Логін', class: 'form-control'
 
-    .field= f.text_field :full_name, placeholder: :full_name
+    .field= f.text_field :full_name, placeholder: 'Повне імя', class: 'form-control'
 
-    .field= f.email_field :email, placeholder: :email
+    .field= f.email_field :email, placeholder: 'Email', class: 'form-control'
 
-    .field= f.select(:role, [['Student', 'student'], ['Teacher', 'teacher']], {}, onChange: 'changeUserStatus();')
+    .field= f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {}, onChange: 'changeUserStatus();')
     .field= f.collection_select(:group_id, Group.all, :id, :name, include_blank: true)
 
-    .field= f.password_field :password, autocomplete: 'off', placeholder: :password
+    .field= f.password_field :password, autocomplete: 'off', placeholder: 'Пароль', class: 'form-control'
 
-    .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: :password_confirmation
+    .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Підтвердження паролю', class: 'form-control'
 
     %p
-    .actions= f.submit 'Sign up'
+    .actions= f.submit 'Зареєструватись'
 
 = render 'devise/shared/links'
