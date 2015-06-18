@@ -4,15 +4,15 @@
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
-          %span.sr-only Close
-        %h4.modal-title New Folder
+          %span.sr-only Закрити
+        %h4.modal-title Нова тека
       .modal-body
         = form_for @folder do |f|
-          %div= f.label :name
+          %div= f.label 'Назва'
           = f.text_field :name, class: 'form-control'
           %div= f.hidden_field :parent_id, value: @parent.id
-          %div= f.label :visible
+          %div= f.label 'Видима'
           = f.check_box :visible
           .modal-footer
-            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
-            = f.submit 'Save', class: 'btn btn-custom'
+            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Скасувати
+            = f.submit 'Зберегти', class: 'btn btn-custom'

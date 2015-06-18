@@ -13,11 +13,11 @@
     .col-md-12
       %table{ id: '#mytable', class: 'table table-bordred table-striped' }
         %thead
-          %th Name
-          %th Type
-          %th Date
-          %th D-load
-          %th Fav
+          %th Назва
+          %th Тип
+          %th Дата
+          %th Завантаж.
+          %th Вибране
         %tbody
           - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr

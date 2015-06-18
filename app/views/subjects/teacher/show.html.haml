@@ -6,29 +6,27 @@
         >
         = link_to folder.name, subject_path(id: @subject.id, parent: folder), style: 'text-decoration:none'
 
-
-
   .pull-right
-    %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Groups
+    %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Групи
     = render 'subjects/modals/groups'
 
-    %a.btn.btn-subj.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New folder
+    %a.btn.btn-subj.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Нова тека
     = render 'folders/new_folder'
 
-    %a.btn.btn-subj.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New file
+    %a.btn.btn-subj.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Новий файл
     = render 'sub_files/new_file'
 
   .row
     .col-md-12
       %table{ id: '#mytable', class: 'table table-bordred table-striped' }
         %thead
-          %th Name
-          %th Type
-          %th Date
-          %th D-load
-          %th Visible
-          %th Edit
-          %th Delete
+          %th Назва
+          %th Тип
+          %th Дата
+          %th Завант-ти
+          %th Видимість
+          %th Редагувати
+          %th Видалити
         %tbody
           - @subject.folders.where(parent_id: @parent).each do |item|
             %tr

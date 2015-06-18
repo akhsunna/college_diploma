@@ -4,8 +4,8 @@
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
-          %span.sr-only Close
-        %h4.modal-title Groups
+          %span.sr-only Закрити
+        %h4.modal-title Групи
       .modal-body
         .well{ style: 'max-height: 300px;overflow: auto;' }
           %ul.list-group.checked-list-box
@@ -17,4 +17,4 @@
                 = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
                   %li.list-group-item= group.name
       .modal-footer
-        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel
+        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Скасувати

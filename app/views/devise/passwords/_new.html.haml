@@ -4,13 +4,13 @@
       .modal-header
         %button.close{'data-dismiss' => 'modal', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
-          %span.sr-only Close
-        %h4.modal-title Recovery password
+          %span.sr-only Закрити
+        %h4.modal-title Відновлення паролю
       .modal-body
-        %p Type your email account
+        %p Введіть ваш email
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
           = devise_error_messages!
           = f.email_field :email, autofocus: true, class: 'form-control', id: 'recovery-email'
           .modal-footer
-            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Cancel
-            = f.submit 'Recovery', class: 'btn btn-custom'
+            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Скасувати
+            = f.submit 'Відновити', class: 'btn btn-custom'

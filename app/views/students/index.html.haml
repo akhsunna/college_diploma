@@ -6,11 +6,11 @@
     .col-md-12
       %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
         %thead
-          %th Full name
-          %th Name
-          %th Group
-          %th Edit group
-          %th Delete
+          %th Повне імя
+          %th Логін
+          %th Група
+          %th Редагувати
+          %th Видалити
         %tbody
           - @students.each do |user|
             = link_to user_path(user.id) do
