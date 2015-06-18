@@ -1,5 +1,8 @@
-Предмети
-%br
-- @subjects.each do |subject|
-  = link_to subject.name, subject_path(subject.id)
-  %br
+.container
+  Предмети
+  .row
+    - @subjects.each do |subject|
+      = link_to subject_path(subject.id), style: 'text-decoration: none', class: 'pn-subj col col-xs-4 col-sm-4 col-md-4 col-lg-4' do
+        .row{style: 'font-size: 40px'}= subject.short_name
+        -#.row= subject.name
+        .row= subject.user.full_name

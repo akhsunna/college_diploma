@@ -30,8 +30,9 @@
         %tbody
           - @subject.folders.where(parent_id: @parent).each do |item|
             %tr
-              %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-              %td folder
+              %td
+                %b= link_to item.name, subject_path(id: @subject.id, parent: item)
+              %td тека
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td= '-'
               %td
@@ -53,7 +54,7 @@
           - @subject.sub_files.where(parent_id: @parent).each do |item|
             %tr
               %td= link_to item.name, sub_file_path(item.id)
-              %td= item.format
+              %td= item.format_ua
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td
                 = link_to item.content.url, download: item.name do
