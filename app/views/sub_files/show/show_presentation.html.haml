@@ -1,0 +1,27 @@
+.container
+  = render 'sub_files/file_path'
+  #main_area
+    .row
+      #carousel-bounding-box.col-sm-8
+        #myCarousel.carousel.slide
+          .carousel-inner
+            - @slides.sort.each_with_index do |slide, index|
+              - if index == 0
+                .active.item
+                  %img{src: slide.to_s}
+              - else
+                .item
+                  %img{src: slide.to_s}
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-left
+          %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-right
+      #slider-thumbs.col-sm-4.hidden-xs
+        %ul.hide-bullets
+          - @slides.sort.each_with_index do |slide, index|
+            %li.row
+              .col-sm-1= index.to_s
+              .col-sm-10
+                - @idd = 'carousel-selector-'+index.to_s
+                %a.thumbnail{id: @idd}
+                  %img{src: slide}/

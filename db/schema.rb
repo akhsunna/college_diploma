@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150608140241) do
 
   add_index "folders", ["subject_id"], name: "index_folders_on_subject_id", using: :btree
 
-  create_table "group_subjects", id: false, force: :cascade do |t|
+  create_table "group_subjects", force: :cascade do |t|
     t.integer "group_id",   limit: 4, null: false
     t.integer "subject_id", limit: 4, null: false
   end

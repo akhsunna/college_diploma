@@ -1,3 +1,4 @@
 .container
-  = @sub_file.name
+  = render 'sub_files/file_path'
+  %br
   %embed{ src: @sub_file.path_viewing }
