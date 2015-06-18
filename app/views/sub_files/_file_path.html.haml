@@ -1,0 +1,7 @@
+.folder-path
+  = link_to @subject.name, subject_path(@subject.id), style: 'text-decoration:none'
+  - if !@parent.root?
+    - @current_path.reverse_each do |folder|
+      >
+      = link_to folder.name, subject_path(id: @subject.id, parent: folder), style: 'text-decoration:none'
+  = ' > ' + @sub_file.name

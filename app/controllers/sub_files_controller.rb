@@ -58,6 +58,17 @@ class SubFilesController < ApplicationController
 
   def show
     @sub_file = SubFile.find(params[:id])
+    @parent = @sub_file.parent
+    @subject = Subject.find(cookies[:current_subject])
+
+    unless @parent.root?
+      @current_folder, @current_path = @parent, [@parent]
+      while @current_folder.parent_id != @subject.root_id
+        @current_path.push(@current_folder.parent)
+        @current_folder = @current_folder.parent
+      end
+    end
+
     if @sub_file.format == 'image'
       render 'sub_files/show/show_image'
     elsif @sub_file.format == 'video'

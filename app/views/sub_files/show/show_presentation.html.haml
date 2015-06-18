@@ -1,42 +1,27 @@
 .container
-  = @sub_file.name
+  = render 'sub_files/file_path'
   #main_area
     .row
-      #slider.col-xs-12
-        .row
-          #carousel-bounding-box.col-sm-8
-            #myCarousel.carousel.slide
-              .carousel-inner
-                - @slides.sort.each_with_index do |slide, index|
-                  - if index == 0
-                    .active.item{'data-slide-number' => '0'}
-                      %img{src: slide.to_s}
-                  - else
-                    .item{'data-slide-number' => '0'}
-                      %img{src: slide.to_s}
-              %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
-                %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-left
-              %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
-                %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-right
-          #carousel-text.col-sm-4
-    / /Slider
-    #slider-thumbs.row.hidden-xs
-      %ul.hide-bullets
-        %li.col-sm-2
-          %a#carousel-selector-0.thumbnail
-            %img{src: @slides.sort[0]}/
-        %li.col-sm-2
-          %a#carousel-selector-1.thumbnail
-            %img{src: @slides.sort[1]}/
-        %li.col-sm-2
-          %a#carousel-selector-2.thumbnail
-            %img{src: @slides.sort[2]}/
-        %li.col-sm-2
-          %a#carousel-selector-3.thumbnail
-            %img{src: @slides.sort[3]}/
-        %li.col-sm-2
-          %a#carousel-selector-4.thumbnail
-            %img{src: @slides.sort[4]}/
-        %li.col-sm-2
-          %a#carousel-selector-5.thumbnail
-            %img{src: @slides.sort[5]}/
+      #carousel-bounding-box.col-sm-8
+        #myCarousel.carousel.slide
+          .carousel-inner
+            - @slides.sort.each_with_index do |slide, index|
+              - if index == 0
+                .active.item
+                  %img{src: slide.to_s}
+              - else
+                .item
+                  %img{src: slide.to_s}
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-left
+          %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left.fa.fa-chevron-circle-right
+      #slider-thumbs.col-sm-4.hidden-xs
+        %ul.hide-bullets
+          - @slides.sort.each_with_index do |slide, index|
+            %li.row
+              .col-sm-1= index.to_s
+              .col-sm-10
+                - @idd = 'carousel-selector-'+index.to_s
+                %a.thumbnail{id: @idd}
+                  %img{src: slide}/
