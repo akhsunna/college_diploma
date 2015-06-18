@@ -11,8 +11,10 @@
           %ul.list-group.checked-list-box
             - @groups.each do |group|
               - if @sub_groups.include?(group)
-                %li.list-group-item{'data-checked' => 'true'}= link_to group.name, group_subject_path(group), method: :put, remote: true, data: { id: group.id }
+                = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
+                  %li.list-group-item{'data-checked' => 'true'}= group.name
               -else
-                %li.list-group-item= link_to group.name, group_subject_path(group), method: :put, remote: true, data: { id: group.id }
+                = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
+                  %li.list-group-item= group.name
       .modal-footer
         %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Cancel
