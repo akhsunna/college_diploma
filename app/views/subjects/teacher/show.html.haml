@@ -7,13 +7,13 @@
         = link_to folder.name, subject_path(id: @subject.id, parent: folder), style: 'text-decoration:none'
 
   .pull-right
-    %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Групи
+    %a.btn.btn-subj.forget{ 'data-target' => '.group-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Групи
     = render 'subjects/modals/groups'
 
-    %a.btn.btn-subj.forget{ 'data-target' => '.folder-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Нова тека
+    %a.btn.btn-subj.forget{ 'data-target' => '.folder-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Нова тека
     = render 'folders/new_folder'
 
-    %a.btn.btn-subj.forget{ 'data-target' => '.file-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Новий файл
+    %a.btn.btn-subj.forget{ 'data-target' => '.file-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Новий файл
     = render 'sub_files/new_file'
 
   .row

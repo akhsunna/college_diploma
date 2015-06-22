@@ -1,7 +1,11 @@
 .container
 
-  %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New group
+  %a.btn.btn-subj.forget{ 'data-target' => '.group-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Нова група
   = render 'groups/modals/new_group'
+
+  %a.btn.btn-subj Спеціальності
+
+
 
   .row
     .col-md-12
@@ -10,19 +14,14 @@
           %th Назва
           %th Курс
           %th Спеціальність
-          %th Редагувати
           %th Видалити
           %th Invite-коди
         %tbody
           - @groups.each do |group|
             %tr
-              %td= group.name
+              %td= link_to group.name, group_path(group.id)
               %td= group.course
               %td= group.speciality.short_name
-              %td
-                = link_to edit_group_path(group), remote: true do
-                  .btn.btn-sm.btn-warning
-                    %i.fa.fa-edit
               %td
                 = link_to root_path, remote: true do
                   .btn.btn-sm.btn-danger
@@ -31,3 +30,6 @@
                 = link_to root_path, remote: true do
                   .btn.btn-sm.btn-info
                     %i.fa.fa-eye
+                = link_to root_path, remote: true do
+                  .btn.btn-sm.btn-subj
+                    %i.fa.fa-refresh

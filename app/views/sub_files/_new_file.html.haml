@@ -2,7 +2,7 @@
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
-        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+        %button.close{'data-dismiss' => 'modals', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
           %span.sr-only Закрити
         %h4.modal-title Новий файл
@@ -13,5 +13,5 @@
           = f.check_box :visible
           %div= f.hidden_field :parent_id, value: @parent.id
           .modal-footer
-            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Сказувати
+            %button{'data-dismiss' => 'modals', :type => 'button', class: 'btn btn-default'} Сказувати
             = f.submit 'Зберегти', class: 'btn btn-custom'

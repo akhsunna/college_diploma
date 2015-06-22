@@ -21,7 +21,6 @@
 
               - if current_user.admin?
                 %li= link_to 'Групи', groups_path
-                %li= link_to 'Студенти', students_path
                 %li= link_to 'Викладачі', teachers_path
               - if current_user.student?
                 %li= link_to 'Вибране', favourites_path

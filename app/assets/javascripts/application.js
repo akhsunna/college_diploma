@@ -52,10 +52,8 @@ function showPassword() {
 //    $(this).toggleClass('btn-gray');
 //});
 
-$('div.btn.btn-sm').click(function() {
-    $(this).addClass('btn-gray');
+
     //event.preventDefault();
-});
 
 
 
@@ -83,20 +81,17 @@ jQuery(document).ready(function($) {
         $('#myCarousel').carousel(id);
     });
 
+    $('div.btn.btn-sm.btn-info').click(function() {
+        $(this).toggleClass('btn-gray');
+        console.log($(this));
+    });
+
+    $('div.btn.btn-sm.btn-warning').click(function() {
+        $(this).toggleClass('btn-gray');
+        console.log($(this));
+    });
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -178,7 +173,16 @@ $(function () {
         });
         $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
     });
+
+
+
 });
+
+
+
+
+
+
 
 
 

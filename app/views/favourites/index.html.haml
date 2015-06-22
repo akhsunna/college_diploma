@@ -1,5 +1,5 @@
 .container
-  %div.btn.btn-sm KJKJ
+  -#%div.btn.btn-sm KJKJ
 
   %br
 
@@ -10,6 +10,7 @@
           %th Назва
           %th Тип
           %th Дата
+          %th Предмет
           %th Зав-ти
           %th Вибране
         %tbody
@@ -18,6 +19,7 @@
               %td= link_to item.name, subject_path(id: item.subject.id, parent: item)
               %td folder
               %td= item.updated_at.strftime('%d/%m/%Y')
+              %td= Subject.find(item.subject_id).short_name
               %td= '-'
               %td
                 = link_to folder_path(item), method: :delete, remote: true do
@@ -28,6 +30,7 @@
               %td= link_to item.name, sub_file_path(item.id)
               %td= item.format
               %td= item.updated_at.strftime('%d/%m/%Y')
+              %td= Subject.find(item.subject_id).short_name
               %td
                 = link_to item.content.url, download: item.name do
                   .btn.btn-sm.btn-subj

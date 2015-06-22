@@ -2,7 +2,7 @@
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
-        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+        %button.close{'data-dismiss' => 'modals', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
           %span.sr-only Закрити
         %h4.modal-title Нова група
@@ -15,5 +15,5 @@
           %div= f.label 'Спеціальність'
           = f.collection_select(:speciality_id, Speciality.all, :id, :short_name, class: 'btn btn-default dropdown-toggle')
           .modal-footer
-            %button{'data-dismiss' => 'modal', :type => 'button', class: 'btn btn-default'} Скасувати
+            %button{'data-dismiss' => 'modals', :type => 'button', class: 'btn btn-default'} Скасувати
             = f.submit 'Зберегти', class: 'btn btn-custom'

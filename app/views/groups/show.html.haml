@@ -1,20 +1,23 @@
 .container
 
-  %a.btn.btn-subj Invite codes
+  %a.btn.btn-subj Invite коди
 
   .row
     .col-md-12
       %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
         %thead
+          %th №
           %th Повне імя
           %th Логін
           %th Група
           %th Редагувати
           %th Видалити
         %tbody
-          - @students.each do |user|
+          - n = 0
+          - @students.sort_by{|obj| obj.full_name}.each do |user|
             = link_to user_path(user.id) do
               %tr
+                %td= (n+=1).to_s
                 %td= user.full_name
                 %td= link_to user.name
                 %td= user.group.name

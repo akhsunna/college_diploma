@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :users, :students, :teachers, :subjects
 
+  match 'teachers/new_invite_code' => 'teachers#new_invite_code', :via => :post
+  match 'teachers/delete_invite_codes' => 'teachers#delete_invite_codes', :via => :post
+
   resources :folders do
     get 'delete'
     put 'favourite'

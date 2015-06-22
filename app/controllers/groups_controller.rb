@@ -2,6 +2,11 @@ class GroupsController < ApplicationController
 
   respond_to :html, :js
 
+  def show
+    @group = Group.find(params[:id])
+    @students = @group.users
+  end
+
   def index
     @groups = Group.all
     @group = Group.new

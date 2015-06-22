@@ -32,7 +32,7 @@
                     #btn-fav.btn.btn-sm.btn-warning
                       %i.fa.fa-star
                   - else
-                    #btn-fav.btn.btn-sm.btn-warning.btn-favo.btn-gray
+                    #btn-fav.btn.btn-sm.btn-warning.btn-gray
                       %i.fa.fa-star
           - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr
