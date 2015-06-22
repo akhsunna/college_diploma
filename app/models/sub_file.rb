@@ -47,6 +47,30 @@ class SubFile < ActiveRecord::Base
     end
   end
 
+  def format_ua
+    t = content_content_type.split('/').last
+    if IMAGE_TYPES.include?(t)
+      'зображення'
+    elsif DOC_TYPES.include?(t)
+      'документ'
+    elsif PRESENTATION_TYPES.include?(t)
+      'презентація'
+    elsif t == 'pdf'
+      'документ'
+    elsif CODE_TYPES.include?(t)
+      'код'
+    elsif VIDEO_TYPES.include?(t)
+      'відео'
+    elsif AUDIO_TYPES.include?(t)
+      'аудіо'
+    elsif ARCHIVE_TYPES.include?(t)
+      'архів'
+    else
+      'файл'
+    end
+  end
+
+
   def favourite? (user)
     FavFile.any?{ |item| item.sub_file_id==id && item.user_id==user.id }
   end

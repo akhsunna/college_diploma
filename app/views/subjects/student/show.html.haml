@@ -21,8 +21,9 @@
         %tbody
           - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr
-              %td= link_to item.name, subject_path(id: @subject.id, parent: item)
-              %td folder
+              %td
+                %b= link_to item.name, subject_path(id: @subject.id, parent: item)
+              %td тека
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td= '-'
               %td
@@ -31,12 +32,12 @@
                     #btn-fav.btn.btn-sm.btn-warning
                       %i.fa.fa-star
                   - else
-                    #btn-fav.btn.btn-sm.btn-warning.btn-favo.btn-gray
+                    #btn-fav.btn.btn-sm.btn-warning.btn-gray
                       %i.fa.fa-star
           - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).each do |item|
             %tr
               %td= link_to item.name, sub_file_path(item.id)
-              %td= item.format
+              %td= item.format_ua
               %td= item.updated_at.strftime('%d/%m/%Y')
               %td
                 = link_to item.content.url, download: item.name do

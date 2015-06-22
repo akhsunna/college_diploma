@@ -1,3 +1,5 @@
 .container
-  = render 'sub_files/file_path'
-  = video_tag @sub_file.content.url, controls: true
+  .row
+    = render 'sub_files/file_path'
+  .row
+    = video_tag @sub_file.content.url, controls: true, class: 'col-sm-10'

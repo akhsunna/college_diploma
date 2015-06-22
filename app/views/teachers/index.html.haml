@@ -1,16 +1,14 @@
 .container
-
-  %a.btn.btn-subj Invite-коди
-
   .row
-    .col-md-12
+    .col-md-9
+      Список викладачів
       %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
         %thead
           %th Повне імя
           %th Логін
           %th Видалити
         %tbody
-          - @teachers.each do |user|
+          - @teachers.sort_by{|obj| obj.full_name}.each do |user|
             = link_to user_path(user.id) do
               %tr
                 %td= user.full_name
@@ -19,3 +17,16 @@
                   = link_to root_path, remote: true do
                     .btn.btn-sm.btn-danger
                       %i.fa.fa-trash
+    .col-md-3
+      Invite-коди
+      %br
+      .btn.btn-subj= link_to 'Новий', {:action => :new_invite_code, :controller => :teachers}, :method => :post
+      .btn.btn-subj= link_to 'Очистити всі коди', {:action => :delete_invite_codes, :controller => :teachers}, :method => :post
+      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+        %tbody
+          - n = 0
+          - @invite_codes.each do |code|
+            %tr
+              %td= (n+=1).to_s
+              %td= code.token
+

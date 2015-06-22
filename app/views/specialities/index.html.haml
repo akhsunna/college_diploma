@@ -1,0 +1,26 @@
+.container
+
+  %a.btn.btn-subj.forget{ 'data-target' => '.speciality-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Нова спеціальність
+  = render 'specialities/modals/new_speciality'
+
+  .row
+    .col-md-12
+      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+        %thead
+          %th Скорочена назва
+          %th Назва
+          %th Редагувати
+          %th Видалити
+        %tbody
+          - @specialities.sort_by{|obj| obj.name}.each do |speciality|
+            %tr
+              %td= speciality.short_name
+              %td= speciality.name
+              %td
+                = link_to edit_speciality_path(speciality), remote: true do
+                  .btn.btn-sm.btn-info
+                    %i.fa.fa-edit
+              %td
+                = link_to speciality_delete_path(speciality), remote: true do
+                  .btn.btn-sm.btn-danger
+                    %i.fa.fa-trash

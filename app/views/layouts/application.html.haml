@@ -21,7 +21,6 @@
 
               - if current_user.admin?
                 %li= link_to 'Групи', groups_path
-                %li= link_to 'Студенти', students_path
                 %li= link_to 'Викладачі', teachers_path
               - if current_user.student?
                 %li= link_to 'Вибране', favourites_path
@@ -47,8 +46,6 @@
                       %a=link_to 'Змінити пароль'
                     - else
                       %a=link_to 'Налаштування', edit_user_registration_path
-                  %li
-                    %a=link_to 'Inbox'
                   %li
                     - if !current_user.admin?
                       %a=link_to 'Користувачі', users_path

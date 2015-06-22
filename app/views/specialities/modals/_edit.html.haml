@@ -3,14 +3,16 @@
     .modal-header
       .modal-title-subj
         %div{style: 'float:left'} Редагування
-        %div{style: 'color: #f0ad4e'}= '"' + @folder.name + '"'
+        %div{style: 'color: #f0ad4e'}= '"' + @speciality.name + '"'
 
-    = form_for @folder, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
+    = form_for @speciality, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
       .modal-body
         %ul.errors
         .control-group
           = f.label 'Назва', class: 'control-label'
           = f.text_field :name, class: 'form-control'
+          = f.label 'Скорочена назва', class: 'control-label'
+          = f.text_field :short_name, class: 'form-control'
       .modal-footer
         = f.submit 'Зберегти', class: 'btn btn-warning'
         = link_to 'Скасувати', '', class: 'btn', data: {dismiss: 'modals'}

@@ -1,4 +1,5 @@
 .container
-  = render 'sub_files/file_path'
-  %br
-  %embed{ src: @sub_file.path_viewing }
+  .row
+    = render 'sub_files/file_path'
+  .row
+    %embed.doc{ src: @sub_file.path_viewing }

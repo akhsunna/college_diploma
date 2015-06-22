@@ -1,8 +1,8 @@
-.modal.fade.group-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myGroupModalLabel', role: 'dialog', tabindex: '-1'}
+.modal.fade.groups-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myGroupsModalLabel', role: 'dialog', tabindex: '-1'}
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{'data-dismiss' => 'modal', :type => 'button'}
+        %button.close{'data-dismiss' => 'modals', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
           %span.sr-only Закрити
         %h4.modal-title Групи
@@ -17,4 +17,4 @@
                 = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
                   %li.list-group-item= group.name
       .modal-footer
-        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Скасувати
+        %button.btn.btn-default{'data-dismiss' => 'modals', :type => 'button'} Закрити

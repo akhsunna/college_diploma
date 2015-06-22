@@ -1,18 +1,17 @@
-.modal.fade.folder-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'myFolderModalLabel', role: 'dialog', tabindex: '-1'}
+.modal.fade.speciality-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'mySpecialityModalLabel', role: 'dialog', tabindex: '-1'}
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
         %button.close{'data-dismiss' => 'modals', :type => 'button'}
           %span{'aria-hidden' => 'true'} ×
           %span.sr-only Закрити
-        %h4.modal-title Нова тека
+        %h4.modal-title Нова спеціальність
       .modal-body
-        = form_for @folder do |f|
+        = form_for @speciality do |f|
           %div= f.label 'Назва'
           = f.text_field :name, class: 'form-control'
-          %div= f.hidden_field :parent_id, value: @parent.id
-          %div= f.label 'Видима'
-          = f.check_box :visible
+          %div= f.label 'Скорочена назва'
+          = f.text_field :short_name, class: 'form-control'
           .modal-footer
             %button{'data-dismiss' => 'modals', :type => 'button', class: 'btn btn-default'} Скасувати
             = f.submit 'Зберегти', class: 'btn btn-custom'
