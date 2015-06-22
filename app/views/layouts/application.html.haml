@@ -43,7 +43,7 @@
                 %ul.dropdown-menu{role: 'menu'}
                   %li
                     - if current_user.admin?
-                      %a=link_to 'Змінити пароль'
+                      %a=link_to 'Змінити пароль', edit_user_registration_path
                     - else
                       %a=link_to 'Налаштування', edit_user_registration_path
                   %li
