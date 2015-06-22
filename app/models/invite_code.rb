@@ -9,7 +9,9 @@ class InviteCode < ActiveRecord::Base
 
   private
 
-  def generate(role)
+  require 'securerandom'
 
+  def self.generate
+    SecureRandom.urlsafe_base64(5)
   end
 end

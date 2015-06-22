@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
   end
 
   def new_invite_code
-    @invite_code = InviteCode.create(role: 'teacher', token: 'token')
+    @invite_code = InviteCode.create(role: 'teacher', token: InviteCode.generate)
     redirect_to teachers_path
   end
 
