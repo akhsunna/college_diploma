@@ -47,8 +47,6 @@
                     - else
                       %a=link_to 'Налаштування', edit_user_registration_path
                   %li
-                    %a=link_to 'Inbox'
-                  %li
                     - if !current_user.admin?
                       %a=link_to 'Користувачі', users_path
                   %li.divider
