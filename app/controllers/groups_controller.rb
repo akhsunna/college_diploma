@@ -18,8 +18,9 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
-  def edit
-    @group = Group.find(params[:id])
+  def invite_codes
+    @group = Group.find(params[:group_id])
+    @invite_codes = InviteCode.where(group_id: @group.id)
   end
 
   def update
@@ -27,7 +28,7 @@ class GroupsController < ApplicationController
     if @group.update_attributes(group_params)
       redirect_to groups_path, notice: 'The group has been successfully updated.'
     else
-      render action: 'edit'
+      render action: 'new'
     end
   end
 

@@ -1,9 +1,9 @@
 .container
 
-  %a.btn.btn-subj.forget{ 'data-target' => '.group-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Нова група
+  %a.btn.btn-subj.forget{ 'data-target' => '.group-modal', 'data-toggle' => 'modal', href: 'javascript:;' } New group
   = render 'groups/modals/new_group'
 
-  %a.btn.btn-subj Спеціальності
+  .btn.btn-subj= link_to 'Спеціальності', specialities_path
 
 
 
@@ -27,9 +27,16 @@
                   .btn.btn-sm.btn-danger
                     %i.fa.fa-trash
               %td
-                = link_to root_path, remote: true do
+                = link_to group_invite_codes_path(group.id), remote: true do
                   .btn.btn-sm.btn-info
                     %i.fa.fa-eye
                 = link_to root_path, remote: true do
                   .btn.btn-sm.btn-subj
                     %i.fa.fa-refresh
+
+
+
+
+
+
+

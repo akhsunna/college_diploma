@@ -1,0 +1,13 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{'data-dismiss' => 'modals', :type => 'button'}
+        %span{'aria-hidden' => 'true'} ×
+        %span.sr-only Закрити
+      %h4.modal-title{style: 'float:left'} Invite-коди
+      %h4.modal-title{style: 'color: #f0ad4e'}= '"' + @group.name + '"'
+    .modal-body
+      - @invite_codes.each do |code|
+        = code.token
+    .modal-footer
+      %button.btn.btn-default{'data-dismiss' => 'modals', :type => 'button'} Закрити
