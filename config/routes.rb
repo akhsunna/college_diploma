@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, :students, :teachers, :subjects
+  resources :users, :students, :teachers
+
+  resources :subjects do
+    get 'delete'
+  end
 
   match 'teachers/new_invite_code' => 'teachers#new_invite_code', :via => :post
   match 'teachers/delete_invite_codes' => 'teachers#delete_invite_codes', :via => :post

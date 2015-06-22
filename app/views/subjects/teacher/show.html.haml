@@ -77,3 +77,6 @@
                 = link_to sub_file_delete_path(item), remote: true do
                   .btn.btn-sm.btn-danger
                     %i.fa.fa-trash
+  .row
+    .col-md-12
+      .btn.btn-subj= link_to 'Видалити предмет', subject_delete_path(@subject), remote: true

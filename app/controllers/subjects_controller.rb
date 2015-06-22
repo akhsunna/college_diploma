@@ -62,6 +62,16 @@ class SubjectsController < ApplicationController
     subject.save!
   end
 
+  def delete
+    @subject = Subject.find(params[:subject_id])
+  end
+
+  def destroy
+    @subjects = Subject.all
+    @subject = Subject.find(params[:id])
+    @subject.destroy
+  end
+
   private
 
   def subject_params
