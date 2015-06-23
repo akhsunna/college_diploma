@@ -13,12 +13,6 @@
           = f.text_field :full_name, placeholder: 'Повне імя', class: 'form-control'
           = f.email_field :email, placeholder: 'Email', class: 'form-control'
 
-
-          = f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {},
-            { onChange: 'changeUserStatus();', class: 'btn btn-default dropdown-toggle' } )
-          = f.collection_select(:group_id, Group.all, :id, :name, include_blank: true, class: 'btn btn-default dropdown-toggle')
-
-
         %h3 Налаштування паролю
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %div= "Наразі очікується підтвердження: #{resource.unconfirmed_email}"
