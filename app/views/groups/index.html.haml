@@ -9,13 +9,13 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+      %table{ id: '#mytable1', class: 'table table-bordred table-striped sortable' }
         %thead
           %th Назва
           %th Курс
           %th Спеціальність
-          %th Видалити
-          %th Invite-коди
+          %th{'data-defaultsort'=>'disabled'} Видалити
+          %th{'data-defaultsort'=>'disabled'} Invite-коди
         %tbody
           - @groups.each do |group|
             %tr

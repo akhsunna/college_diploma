@@ -5,14 +5,14 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable', class: 'table table-bordred table-striped' }
+      %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
         %thead
           %th Назва
           %th Тип
-          %th Дата
+          %th{'data-defaultsort'=>'month'} Дата
           %th Предмет
-          %th Зав-ти
-          %th Вибране
+          %th{'data-defaultsort'=>'disabled'} Зав-ти
+          %th{'data-defaultsort'=>'disabled'} Вибране
         %tbody
           - @fav_folders.each do |item|
             %tr
