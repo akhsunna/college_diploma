@@ -5,14 +5,14 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+      %table{ id: '#admin-subjects', class: 'table table-bordred table-striped table-hover sortable'}
         %thead
           %th Назва
           %th Скорочена назва
           %th Викладач
-          %th Видалити
+          %th{'data-defaultsort'=>'disabled'} Видалити
         %tbody
-          - @subjects.sort_by{|obj| obj.name}.each do |subject|
+          - @subjects.each do |subject|
             %tr
               %td= subject.name
               %td= subject.short_name
