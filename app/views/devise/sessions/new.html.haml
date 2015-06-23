@@ -7,7 +7,7 @@
           = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
             .form-group
               %label.sr-only{for: 'email'} Email
-              = f.email_field :email, autofocus: true, placehplder: :email, class: 'form-control', id: 'email'
+              = f.text_field :name, autofocus: true, placehplder: 'Логін', class: 'form-control', id: 'name'
             .form-group
               %label.sr-only{for: 'key'} Пароль
               = f.password_field :password, autocomplete: 'off', placehplder: 'Пароль', class: 'form-control', id: 'key'
