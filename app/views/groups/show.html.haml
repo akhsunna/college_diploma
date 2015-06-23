@@ -5,14 +5,14 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable1', class: 'table table-bordred table-striped' }
+      %table{ id: '#mytable1', class: 'table table-bordred table-striped sortable' }
         %thead
           %th №
           %th Повне імя
           %th Логін
           %th Група
-          %th Редагувати
-          %th Видалити
+          %th{'data-defaultsort'=>'disabled'} Редагувати
+          %th{'data-defaultsort'=>'disabled'} Видалити
         %tbody
           - n = 0
           - @students.sort_by{|obj| obj.full_name}.each do |user|

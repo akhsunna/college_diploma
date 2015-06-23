@@ -1,7 +1,7 @@
 .container
   Предмети
   .row
-    - @subjects.each do |subject|
+    - @subjects.sort_by{|obj| obj.short_name}.each do |subject|
       = link_to subject_path(subject.id), style: 'text-decoration: none', class: 'pn-subj col col-xs-4 col-sm-4 col-md-4 col-lg-4' do
         .row{style: 'font-size: 40px'}= subject.short_name
         -#.row= subject.name

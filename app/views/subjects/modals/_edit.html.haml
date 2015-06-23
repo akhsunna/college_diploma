@@ -1,0 +1,17 @@
+.modal.fade.subject-modal{'aria-hidden' => 'true', 'aria-labelledby' => 'mySubjectModalLabel', role: 'dialog', tabindex: '-2'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        .modal-title-subj
+          %div{style: 'float:left'} Редагування назви предмету
+
+      = form_for @subject, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
+        .modal-body
+          %div= f.label 'Повна назва'
+          %div= f.text_field :name, class: 'form-control'
+          %div= f.label 'Скорочена назва'
+          %div= f.text_field :short_name, class: 'form-control'
+        .modal-footer
+          -#= form_authenticity_token
+          = f.submit 'Зберегти', class: 'btn btn-warning'
+          %button.btn.btn-default{'data-dismiss' => 'modals', :type => 'button'} Скасувати

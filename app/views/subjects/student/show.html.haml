@@ -7,19 +7,17 @@
 
   %br
 
-  %div.btn.btn-sm KJKJ
-
   .row
     .col-md-12
       %table{ id: '#mytable', class: 'table table-bordred table-striped' }
         %thead
           %th Назва
           %th Тип
-          %th Дата
-          %th Завантаж.
-          %th Вибране
+          %th{'data-defaultsign'=>'month'} Дата
+          %th{'data-defaultsort'=>'disabled'} Завантаж.
+          %th{'data-defaultsort'=>'disabled'} Вибране
         %tbody
-          - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).each do |item|
+          - @subject.folders.where('parent_id = ? and visible = ?', @parent, true).sort_by{|obj| obj.name}.each do |item|
             %tr
               %td
                 %b= link_to item.name, subject_path(id: @subject.id, parent: item)
@@ -34,7 +32,7 @@
                   - else
                     #btn-fav.btn.btn-sm.btn-warning.btn-gray
                       %i.fa.fa-star
-          - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).each do |item|
+          - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).sort_by{|obj| obj.name}.each do |item|
             %tr
               %td= link_to item.name, sub_file_path(item.id)
               %td= item.format_ua
