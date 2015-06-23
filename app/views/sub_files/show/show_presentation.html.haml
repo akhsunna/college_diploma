@@ -5,7 +5,7 @@
       #carousel-bounding-box.col-sm-8
         #myCarousel.carousel.slide
           .carousel-inner
-            - @slides.sort.each_with_index do |slide, index|
+            - @slides.each_with_index do |slide, index|
               - if index == 0
                 .active.item
                   %img{src: slide.to_s}

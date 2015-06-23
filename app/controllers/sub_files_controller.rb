@@ -2,6 +2,8 @@ class SubFilesController < ApplicationController
 
   respond_to :html, :js
 
+  require 'fileutils'
+
   def new
     @sub_file = SubFile.new
   end
@@ -53,6 +55,7 @@ class SubFilesController < ApplicationController
   def destroy
     @sub_files = SubFile.all
     @sub_file = SubFile.find(params[:id])
+    FileUtils.rm_r(@sub_file.content.path.to_s.split('/')[0...-1].join('/'))
     @sub_file.destroy
   end
 
@@ -79,9 +82,12 @@ class SubFilesController < ApplicationController
       render 'sub_files/show/show_code'
     elsif @sub_file.format == 'presentation'
       @slides = Dir.glob("#{Rails.root}/public" + @sub_file.path_viewing + '/*')
+      @slides.sort_by {|slide| File.mtime(slide) }
       @slides.map!{|item| item=item.partition("public")[2]}
       render 'sub_files/show/show_presentation'
     else
+
+
 
     end
   end
