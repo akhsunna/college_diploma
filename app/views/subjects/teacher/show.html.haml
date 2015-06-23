@@ -80,3 +80,5 @@
   .row
     .col-md-12
       .btn.btn-subj= link_to 'Видалити предмет', subject_delete_path(@subject), remote: true
+      %a.btn.btn-subj.forget{ 'data-target' => '.subject-modal', 'data-toggle' => 'modal', href: 'javascript:;' } Змінити назву предмета
+      = render 'subjects/modals/edit'

@@ -72,6 +72,21 @@ class SubjectsController < ApplicationController
     @subject.destroy
   end
 
+  def edit
+    @subject = Subject.find(params[:id])
+  end
+
+  def update
+    @subjects = Subject.all
+    @subject = Subject.find(params[:id])
+    @subject.update_attributes(subject_params)
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+
+  end
+
   private
 
   def subject_params
