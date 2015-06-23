@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, :students, :teachers, :subjects
+  resources :users, :students, :teachers
+
+  resources :subjects do
+    get 'delete'
+  end
 
   match 'teachers/new_invite_code' => 'teachers#new_invite_code', :via => :post
   match 'teachers/delete_invite_codes' => 'teachers#delete_invite_codes', :via => :post
@@ -30,7 +34,7 @@ Rails.application.routes.draw do
 
   resources :favourites
 
-  root 'users#main'
+  root 'subjects#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

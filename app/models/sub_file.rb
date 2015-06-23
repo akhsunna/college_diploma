@@ -4,7 +4,7 @@ class SubFile < ActiveRecord::Base
 
   has_many :fav_files, dependent: :delete_all
 
-  has_attached_file :content, :url => '/files/:filename', path: ':rails_root/public/files/:filename'
+  has_attached_file :content, :url => '/files/:id/:filename', path: ':rails_root/public/files/:id/:filename'
   do_not_validate_attachment_file_type :content
 
   validates_attachment_presence :content, :message => 'Blank'

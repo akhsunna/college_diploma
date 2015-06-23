@@ -1,15 +1,19 @@
 class SubjectsController < ApplicationController
 
   def index
-    if current_user.teacher?
-      @subjects = Subject.where(user_id: current_user.id)
-      render 'subjects/teacher/index'
-    elsif current_user.student?
-      @subjects = current_user.group.subjects.all
-      render 'subjects/student/index'
+    if user_signed_in?
+      if current_user.teacher?
+        @subjects = Subject.where(user_id: current_user.id)
+        render 'subjects/teacher/index'
+      elsif current_user.student?
+        @subjects = current_user.group.subjects.all
+        render 'subjects/student/index'
+      else
+        @subjects = Subject.all
+        render 'subjects/admin/index'
+      end
     else
-      @subjects = Subject.all
-      render 'subjects/admin/index'
+      redirect_to new_user_session_path
     end
   end
 
@@ -56,6 +60,16 @@ class SubjectsController < ApplicationController
     @folder.save!
     subject.root_id = @folder.id
     subject.save!
+  end
+
+  def delete
+    @subject = Subject.find(params[:subject_id])
+  end
+
+  def destroy
+    @subjects = Subject.all
+    @subject = Subject.find(params[:id])
+    @subject.destroy
   end
 
   private
