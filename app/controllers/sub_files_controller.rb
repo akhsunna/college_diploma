@@ -81,9 +81,16 @@ class SubFilesController < ApplicationController
     elsif @sub_file.format == 'code'
       render 'sub_files/show/show_code'
     elsif @sub_file.format == 'presentation'
-      @slides = Dir.glob("#{Rails.root}/public" + @sub_file.path_viewing + '/*')
-      @slides.sort_by {|slide| File.mtime(slide) }
-      @slides.map!{|item| item=item.partition("public")[2]}
+      @slides1 = Dir.glob("#{Rails.root}/public" + @sub_file.path_viewing + '/*')
+
+
+      @arr = Regexp.new(".*_([0-9]+).jpg")
+      @slides2 = @slides1.sort do |f1, f2|
+        @n1 = @arr.match(f1)[1].to_i
+        @n2 = @arr.match(f2)[1].to_i
+        @n1 <=> @n2
+      end
+      @slides2.map!{|item| item=item.partition("public")[2]}
       render 'sub_files/show/show_presentation'
     else
 
