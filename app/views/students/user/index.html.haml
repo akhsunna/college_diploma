@@ -1,32 +1,40 @@
 .container
-  %div{style: 'font-size: 50px; text-align: center;'}Список студентів
+  - if current_user.teacher?
+    %div{style: 'font-size: 50px; text-align: center;'}Список студентів
+  -else
+    %div{style: 'font-size: 50px; text-align: center;'}Список одногрупників
   .row
-    %table{ class: 'table table-bordred table-striped sortable' }
-      %thead
-        %tr
-          %th{style: 'width:40px', 'data-defaultsort'=>'disabled'}
-          %th{style: 'width:200px', 'data-defaultsort'=>'disabled'}
-          %th{style: 'width:360px', 'data-defaultsort'=>'disabled'}
-          %th{style: 'width:80px'}
-          %th
-      %tbody
-        - @students.sort_by{|obj| obj.full_name}.each do |student|
+    - if @students.empty?
+      Ваших одногрупників не знайдено.
+    - else
+      %table{ class: 'table table-bordred table-striped sortable' }
+        %thead
           %tr
-            %td
-            %td
-              %b
-                Логін:
+            %th{style: 'width:40px', 'data-defaultsort'=>'disabled'}
+            %th{style: 'width:200px', 'data-defaultsort'=>'disabled'}
+            %th{style: 'width:360px', 'data-defaultsort'=>'disabled'}
+            - if current_user.teacher?
+              %th{style: 'width:80px'}
+              %th
+        %tbody
+          - @students.sort_by{|obj| obj.full_name}.each do |student|
+            %tr
+              %td
+              %td
+                %b
+                  Логін:
+                  %br
+                  ПІБ:
+                  %br
+                  E-mail:
+              %td
+                = student.name
                 %br
-                ПІБ:
+                = student.full_name
                 %br
-                E-mail:
-            %td
-              = student.name
-              %br
-              = student.full_name
-              %br
-              = student.email
-            %td
-              %b Група:
-            %td
-              = student.group.name
+                = student.email
+              - if current_user.teacher?
+                %td
+                  %b Група:
+                %td
+                  = student.group.name

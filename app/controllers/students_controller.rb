@@ -3,9 +3,12 @@ class StudentsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @students = User.students
     if user_signed_in?
-      if !current_user.admin?
+      if current_user.student?
+        @students = User.students.where(group_id: current_user.group_id)
+        render 'students/user/index'
+      elsif current_user.teacher?
+        @students = User.students
         render 'students/user/index'
       end
     end
