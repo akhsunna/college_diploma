@@ -1,15 +1,16 @@
 .container
-  = link_to @subject.name, subject_path(@subject.id)
-  - if !@parent.root?
-    - @current_path.reverse_each do |folder|
-      >
-      = link_to folder.name, subject_path(id: @subject.id, parent: folder)
+  .folder-path{style: 'font-size: 30px'}
+    = link_to @subject.name, subject_path(@subject.id)
+    - if !@parent.root?
+      - @current_path.reverse_each do |folder|
+        >
+        = link_to folder.name, subject_path(id: @subject.id, parent: folder)
 
   %br
 
   .row
     .col-md-12
-      %table{ id: '#mytable', class: 'table table-bordred table-striped' }
+      %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
         %thead
           %th Назва
           %th Тип

@@ -20,7 +20,7 @@
         = f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Пароль підтвердження', class: 'form-control'
         = f.password_field :current_password, autocomplete: 'off', placeholder: 'Поточний пароль', class: 'form-control'
         %p
-        = f.submit 'Оновити', class: 'btn btn-default'
+        = f.submit 'Оновити', class: 'btn btn-default btn-subj'
 
       %div
         - if !current_user.admin?
