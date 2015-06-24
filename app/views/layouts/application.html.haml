@@ -34,9 +34,10 @@
                       %a=link_to 'Змінити пароль', edit_user_registration_path
                     - else
                       %a=link_to 'Налаштування', edit_user_registration_path
+                  %li.divider
                   %li
-                    - if !current_user.admin?
-                      %a=link_to 'Користувачі', users_path
+                    - if current_user.student?
+                      %a=link_to 'Викладачі', teachers_path
                   %li.divider
                   %li= link_to 'Вийти', destroy_user_session_path, method: :delete
 

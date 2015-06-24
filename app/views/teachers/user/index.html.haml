@@ -1,0 +1,32 @@
+.container
+  %div{style: 'font-size: 50px; text-align: center;'}Список викладачів
+  .row
+    %table{ class: 'table table-bordred table-striped' }
+      %thead
+        %tr
+          %th{style: 'width:160px'}
+          %th{style: 'width:360px'}
+          %th
+      %tbody
+        - @teachers.sort_by{|obj| obj.full_name}.each do |teacher|
+          %tr
+            %td
+              %b
+                Логін:
+                %br
+                ПІБ:
+                %br
+                E-mail:
+            %td
+              = teacher.name
+              %br
+              = teacher.full_name
+              %br
+              = teacher.email
+            %td
+              %b Предмети:
+              %br
+                - teacher.subjects.each do |subject|
+                  = subject.name + ', '
+                = 'Немає предметів' if teacher.subjects.empty?
+
