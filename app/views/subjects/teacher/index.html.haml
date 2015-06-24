@@ -5,14 +5,14 @@
       У вас поки що немає предметів.
     - else
       - @subjects.sort_by{|obj| obj.short_name}.each do |subject|
-        = link_to subject_path(subject.id), style: 'text-decoration: none', class: 'pn-subj col col-xs-4 col-sm-4 col-md-4 col-lg-4' do
+        = link_to subject_path(subject.id), style: 'text-decoration: none', class: 'pn-subj col col-xs-5 col-sm-5 col-md-5 col-lg-5' do
           .row{style: 'font-size: 60px'}= subject.short_name
           .show-information
             .fa.fa-info
           .information
             = subject.name
             %br
-            %div{style: 'font-size: 15px;color: #2ac3b5'}
+            %div{style: 'font-size: 18px;color: #2ac3b5'}
               - subject.groups.each do |group|
                 = group.name
 

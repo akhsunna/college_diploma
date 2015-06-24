@@ -22,6 +22,10 @@ class StudentsController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     @user.update_attributes(student_params)
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   private

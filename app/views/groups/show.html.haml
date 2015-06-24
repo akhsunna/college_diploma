@@ -1,34 +1,32 @@
 .container
-
-  .row
-    = @group.name
-
   .row
     .col-md-12
-      %table{ id: '#mytable1', class: 'table table-bordred table-striped sortable' }
-        %thead
-          %th №
-          %th Повне імя
-          %th Логін
-          %th E-mail
-          %th Група
-          %th{'data-defaultsort'=>'disabled'} Редагувати
-          %th{'data-defaultsort'=>'disabled'} Видалити
-        %tbody
-          - n = 0
-          - @students.sort_by{|obj| obj.full_name}.each do |user|
-            = link_to user_path(user.id) do
-              %tr
-                %td= (n+=1).to_s
-                %td= user.full_name
-                %td= user.name
-                %td= user.email
-                %td= user.group.name
-                %td
-                  = link_to edit_student_path(user), remote: true do
-                    .btn.btn-sm.btn-info
-                      %i.fa.fa-edit
-                %td
-                  = link_to root_path, remote: true do
-                    .btn.btn-sm.btn-danger
-                      %i.fa.fa-trash
+      %div{style: 'font-size: 40px;'}= @group.name
+      - if @students.empty?
+        %div{style: 'font-size: 20px'}У цій групі поки що нікого не зареєстровано
+      - else
+        %table{ id: '#mytable1', class: 'table table-bordred table-striped sortable' }
+          %thead
+            %th №
+            %th Повне імя
+            %th Логін
+            %th E-mail
+            %th{'data-defaultsort'=>'disabled'} Редагувати
+            %th{'data-defaultsort'=>'disabled'} Видалити
+          %tbody
+            - n = 0
+            - @students.sort_by{|obj| obj.full_name}.each do |user|
+              = link_to user_path(user.id) do
+                %tr
+                  %td= (n+=1).to_s
+                  %td= user.full_name
+                  %td= user.name
+                  %td= user.email
+                  %td
+                    = link_to edit_student_path(user), remote: true do
+                      .btn.btn-sm.btn-info
+                        %i.fa.fa-edit
+                  %td
+                    = link_to root_path, remote: true do
+                      .btn.btn-sm.btn-danger
+                        %i.fa.fa-trash
