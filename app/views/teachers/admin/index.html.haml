@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-9
-      Список викладачів
+      %div{style: 'font-size: 50px'}Список викладачів
       %table{ id: '#mytable1', class: 'table table-bordred table-striped sortable' }
         %thead
           %th Повне імя
@@ -18,7 +18,7 @@
                     .btn.btn-sm.btn-danger
                       %i.fa.fa-trash
     .col-md-3
-      Invite-коди
+      %div{style: 'font-size: 20px'}Invite-коди
       %br
       .btn.btn-subj= link_to 'Новий', {:action => :new_invite_code, :controller => :teachers}, :method => :post
       .btn.btn-subj= link_to 'Очистити всі коди', {:action => :delete_invite_codes, :controller => :teachers}, :method => :post
