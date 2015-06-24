@@ -26,7 +26,7 @@
             %td
               %b Предмети:
               %br
-                - teacher.subjects.each do |subject|
-                  = subject.name + ', '
-                = 'Немає предметів' if teacher.subjects.empty?
+              - teacher.subjects.each do |subject|
+                = subject.name + ', '
+              = 'Немає предметів' if teacher.subjects.empty?
 

@@ -10,6 +10,7 @@
           %th №
           %th Повне імя
           %th Логін
+          %th E-mail
           %th Група
           %th{'data-defaultsort'=>'disabled'} Редагувати
           %th{'data-defaultsort'=>'disabled'} Видалити
@@ -20,7 +21,8 @@
               %tr
                 %td= (n+=1).to_s
                 %td= user.full_name
-                %td= link_to user.name
+                %td= user.name
+                %td= user.email
                 %td= user.group.name
                 %td
                   = link_to edit_student_path(user), remote: true do

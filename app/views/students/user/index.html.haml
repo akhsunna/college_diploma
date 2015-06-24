@@ -1,0 +1,32 @@
+.container
+  %div{style: 'font-size: 50px; text-align: center;'}Список студентів
+  .row
+    %table{ class: 'table table-bordred table-striped sortable' }
+      %thead
+        %tr
+          %th{style: 'width:40px', 'data-defaultsort'=>'disabled'}
+          %th{style: 'width:200px', 'data-defaultsort'=>'disabled'}
+          %th{style: 'width:360px', 'data-defaultsort'=>'disabled'}
+          %th{style: 'width:80px'}
+          %th
+      %tbody
+        - @students.sort_by{|obj| obj.full_name}.each do |student|
+          %tr
+            %td
+            %td
+              %b
+                Логін:
+                %br
+                ПІБ:
+                %br
+                E-mail:
+            %td
+              = student.name
+              %br
+              = student.full_name
+              %br
+              = student.email
+            %td
+              %b Група:
+            %td
+              = student.group.name
