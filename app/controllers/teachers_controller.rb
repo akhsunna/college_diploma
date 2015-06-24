@@ -2,7 +2,14 @@ class TeachersController < ApplicationController
 
   def index
     @teachers = User.teachers
-    @invite_codes = InviteCode.where(role: 'teacher')
+    if user_signed_in?
+      if current_user.admin?
+        @invite_codes = InviteCode.where(role: 'teacher')
+        render 'teachers/admin/index'
+      else
+        render 'teachers/user/index'
+      end
+    end
   end
 
   def new_invite_code

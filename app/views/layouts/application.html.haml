@@ -14,10 +14,11 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            -#.navbar-brand= link_to 'Project name'
             %img{ src: '/assets/hpk.png', style: 'height:50px' }
           .navbar-collapse.collapse
             %ul.nav.navbar-nav
+              -if current_user.student?
+                %li= link_to 'Вибране', favourites_path
               - if current_user.admin?
                 %li= link_to 'Групи', groups_path
                 %li= link_to 'Викладачі', teachers_path
@@ -33,10 +34,12 @@
                       %a=link_to 'Змінити пароль', edit_user_registration_path
                     - else
                       %a=link_to 'Налаштування', edit_user_registration_path
-                  %li
-                    - if !current_user.admin?
-                      %a=link_to 'Користувачі', users_path
                   %li.divider
+                  %li
+                    - if current_user.student?
+                      %a=link_to 'Викладачі', teachers_path
+                      %a= link_to 'Студенти', students_path
+                      %li.divider
                   %li= link_to 'Вийти', destroy_user_session_path, method: :delete
 
     = yield

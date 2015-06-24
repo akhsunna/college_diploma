@@ -4,8 +4,11 @@ class StudentsController < ApplicationController
 
   def index
     @students = User.students
-    @groups = Group.all
-    @specialities = Speciality.all
+    if user_signed_in?
+      if !current_user.admin?
+        render 'students/user/index'
+      end
+    end
   end
 
   def edit
