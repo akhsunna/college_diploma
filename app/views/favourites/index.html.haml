@@ -5,37 +5,40 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
-        %thead
-          %th Назва
-          %th Тип
-          %th{'data-defaultsort'=>'month'} Дата
-          %th Предмет
-          %th{'data-defaultsort'=>'disabled'} Зав-ти
-          %th{'data-defaultsort'=>'disabled'} Вибране
-        %tbody
-          - @fav_folders.each do |item|
-            %tr
-              %td= link_to item.name, subject_path(id: item.subject.id, parent: item)
-              %td folder
-              %td= item.updated_at.strftime('%d/%m/%Y')
-              %td= Subject.find(item.subject_id).short_name
-              %td= '-'
-              %td
-                = link_to folder_path(item), method: :delete, remote: true do
-                  .btn.btn-sm.btn-warning
-                    %i.fa.fa-star
-          - @fav_files.each do |item|
-            %tr
-              %td= link_to item.name, sub_file_path(item.id)
-              %td= item.format
-              %td= item.updated_at.strftime('%d/%m/%Y')
-              %td= Subject.find(item.subject_id).short_name
-              %td
-                = link_to item.content.url, download: item.name do
-                  .btn.btn-sm.btn-subj
-                    %i.fa.fa-download
-              %td
-                = link_to sub_file_path(item), method: :delete, remote: true do
-                  .btn.btn-sm.btn-warning
-                    %i.fa.fa-star
+      - if (@fav_folders.empty? && @fav_files.empty?)
+        %center{style: 'font-size: 20px'}Поки що ви нічого не додавали
+      - else
+        %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
+          %thead
+            %th Назва
+            %th Тип
+            %th{'data-defaultsort'=>'month'} Дата
+            %th Предмет
+            %th{'data-defaultsort'=>'disabled'} Зав-ти
+            %th{'data-defaultsort'=>'disabled'} Вибране
+          %tbody
+            - @fav_folders.each do |item|
+              %tr
+                %td= link_to item.name, subject_path(id: item.subject.id, parent: item)
+                %td folder
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td= Subject.find(item.subject_id).short_name
+                %td= '-'
+                %td
+                  = link_to folder_path(item), method: :delete, remote: true do
+                    .btn.btn-sm.btn-warning
+                      %i.fa.fa-star
+            - @fav_files.each do |item|
+              %tr
+                %td= link_to item.name, sub_file_path(item.id)
+                %td= item.format
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td= Subject.find(item.subject_id).short_name
+                %td
+                  = link_to item.content.url, download: item.name do
+                    .btn.btn-sm.btn-subj
+                      %i.fa.fa-download
+                %td
+                  = link_to sub_file_path(item), method: :delete, remote: true do
+                    .btn.btn-sm.btn-warning
+                      %i.fa.fa-star

@@ -19,64 +19,67 @@
 
   .row
     .col-md-12
-      %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
-        %thead
-          %th Назва
-          %th Тип
-          %th{'data-defaultsign'=>'month'} Дата
-          %th{'data-defaultsort'=>'disabled'} Завант-ти
-          %th{'data-defaultsort'=>'disabled'} Видимість
-          %th{'data-defaultsort'=>'disabled'} Редагувати
-          %th{'data-defaultsort'=>'disabled'} Видалити
-        %tbody
-          - @subject.folders.where(parent_id: @parent).sort_by{|obj| obj.name}.each do |item|
-            %tr
-              %td
-                %b= link_to item.name, subject_path(id: @subject.id, parent: item)
-              %td тека
-              %td= item.updated_at.strftime('%d/%m/%Y')
-              %td= '-'
-              %td
-                = link_to folder_visible_path(item), method: :put, remote: true, data: { id: item.id }  do
-                  - if item.visible
-                    .btn.btn-sm.btn-info
-                      %i.fa.fa-eye
-                  - else
-                    .btn.btn-sm.btn-info.btn-gray
-                      %i.fa.fa-eye
-              %td
-                = link_to edit_folder_path(item), remote: true do
-                  .btn.btn-sm.btn-warning
-                    %i.fa.fa-edit
-              %td
-                = link_to folder_delete_path(item), remote: true do
-                  .btn.btn-sm.btn-danger
-                    %i.fa.fa-trash
-          - @subject.sub_files.where(parent_id: @parent).sort_by{|obj| obj.name}.each do |item|
-            %tr
-              %td= link_to item.name, sub_file_path(item.id)
-              %td= item.format_ua
-              %td= item.updated_at.strftime('%d/%m/%Y')
-              %td
-                = link_to item.content.url, download: item.name do
-                  .btn.btn-sm.btn-subj
-                    %i.fa.fa-download
-              %td
-                = link_to sub_file_visible_path(item), method: :put, remote: true, data: { id: item.id } do
-                  - if item.visible
-                    .btn.btn-sm.btn-info
-                      %i.fa.fa-eye
-                  - else
-                    .btn.btn-sm.btn-info.btn-gray
-                      %i.fa.fa-eye
-              %td
-                = link_to edit_sub_file_path(item), remote: true do
-                  .btn.btn-sm.btn-warning
-                    %i.fa.fa-edit
-              %td
-                = link_to sub_file_delete_path(item), remote: true do
-                  .btn.btn-sm.btn-danger
-                    %i.fa.fa-trash
+      - if (@subject.folders.where(parent_id: @parent).empty? && @subject.sub_files.where(parent_id: @parent).empty?)
+        %center{style: 'font-size: 20px'}Поки що ви нічого не додавали
+      - else
+        %table{ id: '#mytable', class: 'table table-bordred table-striped sortable' }
+          %thead
+            %th Назва
+            %th Тип
+            %th{'data-defaultsign'=>'month'} Дата
+            %th{'data-defaultsort'=>'disabled'} Завант-ти
+            %th{'data-defaultsort'=>'disabled'} Видимість
+            %th{'data-defaultsort'=>'disabled'} Редагувати
+            %th{'data-defaultsort'=>'disabled'} Видалити
+          %tbody
+            - @subject.folders.where(parent_id: @parent).sort_by{|obj| obj.name}.each do |item|
+              %tr
+                %td
+                  %b= link_to item.name, subject_path(id: @subject.id, parent: item)
+                %td тека
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td= '-'
+                %td
+                  = link_to folder_visible_path(item), method: :put, remote: true, data: { id: item.id }  do
+                    - if item.visible
+                      .btn.btn-sm.btn-info
+                        %i.fa.fa-eye
+                    - else
+                      .btn.btn-sm.btn-info.btn-gray
+                        %i.fa.fa-eye
+                %td
+                  = link_to edit_folder_path(item), remote: true do
+                    .btn.btn-sm.btn-warning
+                      %i.fa.fa-edit
+                %td
+                  = link_to folder_delete_path(item), remote: true do
+                    .btn.btn-sm.btn-danger
+                      %i.fa.fa-trash
+            - @subject.sub_files.where(parent_id: @parent).sort_by{|obj| obj.name}.each do |item|
+              %tr
+                %td= link_to item.name, sub_file_path(item.id)
+                %td= item.format_ua
+                %td= item.updated_at.strftime('%d/%m/%Y')
+                %td
+                  = link_to item.content.url, download: item.name do
+                    .btn.btn-sm.btn-subj
+                      %i.fa.fa-download
+                %td
+                  = link_to sub_file_visible_path(item), method: :put, remote: true, data: { id: item.id } do
+                    - if item.visible
+                      .btn.btn-sm.btn-info
+                        %i.fa.fa-eye
+                    - else
+                      .btn.btn-sm.btn-info.btn-gray
+                        %i.fa.fa-eye
+                %td
+                  = link_to edit_sub_file_path(item), remote: true do
+                    .btn.btn-sm.btn-warning
+                      %i.fa.fa-edit
+                %td
+                  = link_to sub_file_delete_path(item), remote: true do
+                    .btn.btn-sm.btn-danger
+                      %i.fa.fa-trash
   .row
     .col-md-12
       .btn.btn-subj= link_to 'Видалити предмет', subject_delete_path(@subject), remote: true
