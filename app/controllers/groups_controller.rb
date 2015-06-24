@@ -43,6 +43,22 @@ class GroupsController < ApplicationController
     respond_with @group
   end
 
+
+  def export
+    @group = Group.find(params[:group_id])
+    @invite_codes = InviteCode.where(group_id: @group.id)
+
+    respond_to do |format|
+      format.doc{ set_header("invite_codes_#{@group.name}_#{DateTime.now.to_date}.doc") }
+    end
+  end
+
+  def set_header(filename)
+        headers['Content-Type'] = "application/vnd.ms-word; charset=UTF-8"
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        headers['Cache-Control'] = ''
+  end
+
   private
 
   def group_params

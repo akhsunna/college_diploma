@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get 'invite_codes'
   end
 
+  post '/groups/export', to: 'groups#export', as: 'groups_export'
+
   resources :specialities do
     get 'delete'
   end
@@ -35,6 +37,8 @@ Rails.application.routes.draw do
   resources :favourites
 
   root 'subjects#index'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

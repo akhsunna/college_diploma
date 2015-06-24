@@ -11,5 +11,6 @@
       - @invite_codes.each do |code|
         = (n += 1).to_s + '. '
         = code.token
+        %br
     .modal-footer
-      %button.btn.btn-default{'data-dismiss' => 'modals', :type => 'button'} Закрити
+      .btn.btn-subj= link_to 'Зберегти в .DOC', groups_export_path(format: "doc", group_id: @group.id), method: :post
