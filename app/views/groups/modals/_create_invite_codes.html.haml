@@ -2,15 +2,15 @@
   .modal-content
     .modal-header
       .modal-title-subj
-        %div{style: 'float:left'} Згенерувати
+        %div{style: 'float:left'} Згенерувати коди запрошення для групи
         %div{style: 'color: #f0ad4e'}= '"' + @group.name + '"'
 
-    = form_for @folder, remote: true, html: { class: 'form-horizontal', style: 'display:inline;' } do |f|
+    = form_tag({controller: 'groups', action: 'create_invite_codess'}, :method => "post") do
       .modal-body
         %ul.errors
         .control-group
-          = f.label 'Кількість', class: 'control-label'
-          = f.text_field :number, class: 'form-control'
+          .control-label= 'Кількість'
+          = text_field_tag :number, '', class: 'form-control'
       .modal-footer
-        = f.submit 'Згенерувати', class: 'btn btn-warning'
+        = submit_tag 'Згенерувати', class: 'btn btn-warning'
         = link_to 'Скасувати', '', class: 'btn', data: {dismiss: 'modals'}

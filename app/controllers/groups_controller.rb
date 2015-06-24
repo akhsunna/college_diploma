@@ -53,6 +53,20 @@ class GroupsController < ApplicationController
     respond_with @group
   end
 
+  def create_invite_codess
+    @group = Group.find(params[:group_id])
+    InviteCode.destroy_all(group_id: @group.id)
+    @number = params[:number]
+    @number.to_i.times{ InviteCode.create(role: 'student', group_id: @group.id, token: InviteCode.generate) }
+    redirect_to groups_path
+  end
+  def create_invite_codes
+    @group = Group.find(params[:group_id])
+    @number = params[:number]
+    @number.to_i.times{ InviteCode.create(role: 'student', group_id: @group.id, token: InviteCode.generate) }
+  end
+
+
 
   def export
     @group = Group.find(params[:group_id])
