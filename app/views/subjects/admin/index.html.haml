@@ -1,10 +1,7 @@
 .container
-
-  .row
-    Предмети
-
   .row
     .col-md-12
+      %div{style: 'font-size: 50px;'}Предмети
       %table{ id: '#admin-subjects', class: 'table table-bordred table-striped table-hover sortable'}
         %thead
           %th Назва
@@ -18,6 +15,6 @@
               %td= subject.short_name
               %td= subject.user.name
               %td
-                = link_to root_path, remote: true do
+                = link_to subject_delete_path(subject.id), remote: true do
                   .btn.btn-sm.btn-danger
                     %i.fa.fa-trash

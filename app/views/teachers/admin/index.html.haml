@@ -14,7 +14,7 @@
                 %td= user.full_name
                 %td= link_to user.name
                 %td
-                  = link_to root_path, remote: true do
+                  = link_to teacher_delete_path(user.id), remote: true do
                     .btn.btn-sm.btn-danger
                       %i.fa.fa-trash
     .col-md-3

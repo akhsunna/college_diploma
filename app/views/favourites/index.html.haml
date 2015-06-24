@@ -19,7 +19,8 @@
           %tbody
             - @fav_folders.each do |item|
               %tr
-                %td= link_to item.name, subject_path(id: item.subject.id, parent: item)
+                %td
+                  %b= link_to item.name, subject_path(id: item.subject.id, parent: item)
                 %td folder
                 %td= item.updated_at.strftime('%d/%m/%Y')
                 %td= Subject.find(item.subject_id).short_name

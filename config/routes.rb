@@ -2,7 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, :students, :teachers
+  resources :users
+
+  resources :students do
+    get 'delete'
+  end
+
+  resources :teachers do
+    get 'delete'
+  end
 
   resources :subjects do
     get 'delete'
@@ -24,9 +32,12 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
+    get 'delete'
     put 'subject'
     get 'invite_codes'
   end
+
+  post '/groups/export', to: 'groups#export', as: 'groups_export'
 
   resources :specialities do
     get 'delete'
@@ -35,6 +46,8 @@ Rails.application.routes.draw do
   resources :favourites
 
   root 'subjects#index'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

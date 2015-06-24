@@ -32,6 +32,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def delete
+    @group = Group.find(params[:group_id])
+  end
+
+  def destroy
+    @groups = Group.all
+    @group = Group.find(params[:id])
+    @group.destroy
+  end
+
   def subject
     @group = Group.find(params[:group_id])
     @subject = Subject.find(cookies[:current_subject])
@@ -41,6 +51,22 @@ class GroupsController < ApplicationController
       @new_group_subject = @subject.group_subjects.create(group_id: @group.id)
     end
     respond_with @group
+  end
+
+
+  def export
+    @group = Group.find(params[:group_id])
+    @invite_codes = InviteCode.where(group_id: @group.id)
+
+    respond_to do |format|
+      format.doc{ set_header("invite_codes_#{@group.name}_#{DateTime.now.to_date}.doc") }
+    end
+  end
+
+  def set_header(filename)
+        headers['Content-Type'] = "application/vnd.ms-word; charset=UTF-8"
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        headers['Cache-Control'] = ''
   end
 
   private

@@ -12,6 +12,16 @@ class TeachersController < ApplicationController
     end
   end
 
+  def delete
+    @user = User.find(params[:teacher_id])
+  end
+
+  def destroy
+    @users = User.all
+    @user = User.find(params[:id])
+    @user.destroy
+  end
+
   def new_invite_code
     @invite_code = InviteCode.create(role: 'teacher', token: InviteCode.generate)
     redirect_to teachers_path

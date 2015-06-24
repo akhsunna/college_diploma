@@ -22,6 +22,20 @@ class StudentsController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     @user.update_attributes(student_params)
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
+  def delete
+    @user = User.find(params[:student_id])
+  end
+
+  def destroy
+    @users = User.all
+    @user = User.find(params[:id])
+    @user.destroy
   end
 
   private
