@@ -21,7 +21,7 @@
               %td= group.course
               %td= group.speciality.short_name
               %td
-                = link_to root_path, remote: true do
+                = link_to group_delete_path(group), remote: true do
                   .btn.btn-sm.btn-danger
                     %i.fa.fa-trash
               %td

@@ -1,0 +1,13 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      .modal-title-subj
+        Видалення
+        = '  "' + @user.name + '"'
+    .modal-body
+      %ul.errors
+        Ви впевнені, що бажаєте видалити викладача
+        %b= @studentuser
+      .modal-footer
+        = link_to 'Так, видалити цього викладача', teacher_path(@user), method: :delete, remote: true, class: 'btn btn-danger'
+        = link_to 'Ні, не видаляти', '', class: 'btn', data: { dismiss: 'modals' }

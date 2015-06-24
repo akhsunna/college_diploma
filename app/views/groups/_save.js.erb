@@ -1,10 +1,10 @@
 $("ul.errors").html("")
-<% if @user.errors.any? %>
-  <% @user.errors.full_messages.each do |message| %>
+<% if @group.errors.any? %>
+  <% @group.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
 
   $("#modals").modal("hide");
-    location = "<%= group_path(@user.group) %>";
+    location = "<%= group_path(@group.id) %>";
 <% end %>

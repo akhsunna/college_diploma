@@ -32,6 +32,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def delete
+    @group = Group.find(params[:group_id])
+  end
+
+  def destroy
+    @groups = Group.all
+    @group = Group.find(params[:id])
+    @group.destroy
+  end
+
   def subject
     @group = Group.find(params[:group_id])
     @subject = Subject.find(cookies[:current_subject])

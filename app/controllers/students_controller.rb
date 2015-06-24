@@ -28,6 +28,16 @@ class StudentsController < ApplicationController
     end
   end
 
+  def delete
+    @user = User.find(params[:student_id])
+  end
+
+  def destroy
+    @users = User.all
+    @user = User.find(params[:id])
+    @user.destroy
+  end
+
   private
 
   def student_params

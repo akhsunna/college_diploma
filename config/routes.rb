@@ -2,7 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, :students, :teachers
+  resources :users
+
+  resources :students do
+    get 'delete'
+  end
+
+  resources :teachers do
+    get 'delete'
+  end
 
   resources :subjects do
     get 'delete'
@@ -24,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
+    get 'delete'
     put 'subject'
     get 'invite_codes'
   end
