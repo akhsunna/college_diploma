@@ -1,26 +1,28 @@
-.container.signin
+.container
+  .row
+    .col-xs-4
 
-  = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
-    = devise_error_messages!
+      = form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+        = devise_error_messages!
 
-    %h3{ :class => 'form-signin-heading' }Please sign up
+        %h3{ :class => 'form-signin-heading' }Реєстрація
 
-    .field= f.text_field :name, autofocus: true, placeholder: 'Логін', class: 'form-control'
+        .field= f.text_field :name, autofocus: true, placeholder: 'Логін', class: 'form-control'
 
-    .field= f.text_field :full_name, placeholder: 'Повне імя', class: 'form-control'
+        .field= f.text_field :full_name, placeholder: 'Повне імя', class: 'form-control'
 
-    .field= f.email_field :email, placeholder: 'Email', class: 'form-control'
+        .field= f.email_field :email, placeholder: 'Email', class: 'form-control'
 
-    .field= f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {}, onChange: 'changeUserStatus();')
-    .field= f.collection_select(:group_id, Group.all, :id, :name, include_blank: true)
+        .field= f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {}, onChange: 'changeUserStatus();', class: 'btn btn-default dropdown-toggle')
+        .field= f.collection_select(:group_id, Group.all, :id, :name, {include_blank: true}, {class: 'btn btn-default dropdown-toggle'})
 
-    .field= text_field_tag :token, '', placeholder: 'token', class: 'form-control'
+        .field= text_field_tag :token, '', placeholder: 'token', class: 'form-control'
 
-    .field= f.password_field :password, autocomplete: 'off', placeholder: 'Пароль', class: 'form-control'
+        .field= f.password_field :password, autocomplete: 'off', placeholder: 'Пароль', class: 'form-control'
 
-    .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Підтвердження паролю', class: 'form-control'
+        .field= f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Підтвердження паролю', class: 'form-control'
 
-    %p
-    .actions= f.submit 'Зареєструватись'
+        %p
+        .actions= f.submit 'Зареєструватись', class: 'btn btn-subj'
 
-= render 'devise/shared/links'
+      = render 'devise/shared/links'

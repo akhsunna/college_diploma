@@ -10,7 +10,7 @@
         %ul.errors
         .control-group
           = f.label 'Група'
-          = f.collection_select(:group_id, Group.all, :id, :name, include_blank: true, class: 'btn btn-default dropdown-toggle')
+          = f.collection_select(:group_id, Group.all, :id, :name, {include_blank: true}, {class: 'btn btn-default dropdown-toggle'})
       .modal-footer
         = f.submit 'Оновити', class: 'btn btn-warning'
         = link_to 'Скасувати', '', class: 'btn', data: {dismiss: 'modals'}

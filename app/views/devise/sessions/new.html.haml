@@ -6,16 +6,16 @@
           %h1 Вхід
           = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
             .form-group
-              %label.sr-only{for: 'email'} Email
+              %label.sr-only{for: 'name'} Логін
               = f.text_field :name, autofocus: true, placehplder: 'Логін', class: 'form-control', id: 'name'
             .form-group
               %label.sr-only{for: 'key'} Пароль
-              = f.password_field :password, autocomplete: 'off', placehplder: 'Пароль', class: 'form-control', id: 'key'
+              = f.password_field :password, autocomplete: 'off', placehplder: :password, class: 'form-control', id: 'key'
             .checkbox
               %span.character-checkbox{:onclick => 'showPassword()'}
               %span.label Показати пароль
             = f.submit 'Увійти', class: 'btn btn-custom btn-lg btn-block', id: 'btn-login'
-          %a.forget{ 'data-target' => '.forget-modals', 'data-toggle' => 'modals', href: 'javascript:;' } Забули пароль?
+          %a.forget{'data-target' => '.forget-modal', 'data-toggle' => 'modal', :href => 'javascript:;'} Забули пароль?
           %a.forget{ href: new_registration_path(resource_name) } Зареєструватись
           %hr
 
