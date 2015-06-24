@@ -42,10 +42,10 @@
                 %td
                   = link_to folder_visible_path(item), method: :put, remote: true, data: { id: item.id }  do
                     - if item.visible
-                      .btn.btn-sm.btn-info
+                      .btn.btn-sm.btn-info.btn-ch
                         %i.fa.fa-eye
                     - else
-                      .btn.btn-sm.btn-info.btn-gray
+                      .btn.btn-sm.btn-info.btn-ch.btn-gray
                         %i.fa.fa-eye
                 %td
                   = link_to edit_folder_path(item), remote: true do
@@ -67,10 +67,10 @@
                 %td
                   = link_to sub_file_visible_path(item), method: :put, remote: true, data: { id: item.id } do
                     - if item.visible
-                      .btn.btn-sm.btn-info
+                      .btn.btn-sm.btn-info.btn-ch
                         %i.fa.fa-eye
                     - else
-                      .btn.btn-sm.btn-info.btn-gray
+                      .btn.btn-sm.btn-info.btn-ch.btn-gray
                         %i.fa.fa-eye
                 %td
                   = link_to edit_sub_file_path(item), remote: true do
