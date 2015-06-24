@@ -1,9 +1,17 @@
 .container
-  Предмети
+  %div{style: 'font-size: 50px; text-align: center;'}Ваші предмети
   .row
     - @subjects.sort_by{|obj| obj.short_name}.each do |subject|
       = link_to subject_path(subject.id), style: 'text-decoration: none', class: 'pn-subj col col-xs-4 col-sm-4 col-md-4 col-lg-4' do
-        .row{style: 'font-size: 40px'}= subject.short_name
+        .row{style: 'font-size: 60px'}= subject.short_name
+        .show-information
+          .fa.fa-info
+        .information
+          = subject.name
+          %br
+          %div{style: 'font-size: 15px;color: #2ac3b5'}
+            - subject.groups.each do |group|
+              = group.name
 
     = link_to new_subject_path, style: 'text-decoration:none;font-size:90px', class: 'pn-subj col col-xs-4 col-sm-4 col-md-4 col-lg-4' do
       +
