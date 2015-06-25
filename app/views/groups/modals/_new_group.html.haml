@@ -13,7 +13,7 @@
           %div= f.label 'Курс'
           = f.text_field :course, class: 'form-control'
           %div= f.label 'Спеціальність'
-          = f.collection_select(:speciality_id, Speciality.all, :id, :short_name, class: 'btn btn-default dropdown-toggle')
+          = f.collection_select(:speciality_id, Speciality.all, :id, :short_name, {}, {class: 'btn btn-default dropdown-toggle form-control'})
           .modal-footer
             %button{'data-dismiss' => 'modals', :type => 'button', class: 'btn btn-default'} Скасувати
             = f.submit 'Зберегти', class: 'btn btn-custom'

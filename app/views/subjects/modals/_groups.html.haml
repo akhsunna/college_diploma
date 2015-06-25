@@ -9,7 +9,7 @@
       .modal-body
         .well{ style: 'max-height: 300px;overflow: auto;' }
           %ul.list-group.checked-list-box
-            - @groups.each do |group|
+            - @groups.sort_by{|obj| obj.name}.each do |group|
               - if @sub_groups.include?(group)
                 = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
                   %li.list-group-item{'data-checked' => 'true'}= group.name
@@ -17,4 +17,3 @@
                 = link_to group_subject_path(group), method: :put, remote: true, data: { id: group.id } do
                   %li.list-group-item= group.name
       .modal-footer
-        %button.btn.btn-default{'data-dismiss' => 'modals', :type => 'button'} Закрити
