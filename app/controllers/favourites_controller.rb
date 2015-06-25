@@ -7,4 +7,6 @@ class FavouritesController < ApplicationController
     end
   end
 
+
+
 end

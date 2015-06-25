@@ -28,10 +28,10 @@
               %td
                 = link_to folder_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
                   - if item.favourite? current_user
-                    #btn-fav.btn.btn-sm.btn-warning
+                    #btn-fav.btn.btn-sm.btn-warning.btn-ch
                       %i.fa.fa-star
                   - else
-                    #btn-fav.btn.btn-sm.btn-warning.btn-gray
+                    #btn-fav.btn.btn-sm.btn-warning.btn-ch.btn-gray
                       %i.fa.fa-star
           - @subject.sub_files.where('parent_id = ? and visible = ?', @parent, true).sort_by{|obj| obj.name}.each do |item|
             %tr
@@ -45,10 +45,10 @@
               %td
                 = link_to sub_file_favourite_path(item), method: :put, remote: true, data: { id: item.id } do
                   - if item.favourite? current_user
-                    .btn.btn-sm.btn-warning
+                    .btn.btn-sm.btn-warning.btn-ch
                       %i.fa.fa-star
                   - else
-                    .btn.btn-sm.btn-warning.btn-gray
+                    .btn.btn-sm.btn-warning.btn-ch.btn-gray
                       %i.fa.fa-star
 
 

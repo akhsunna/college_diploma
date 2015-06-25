@@ -57,7 +57,13 @@ function showPassword() {
 
 
 
-
+$(function() {
+    $('.carousel').each(function(){
+        $(this).carousel({
+            interval: false
+        });
+    });
+});
 
 
 
@@ -81,12 +87,12 @@ jQuery(document).ready(function($) {
         $('#myCarousel').carousel(id);
     });
 
-    $('div.btn.btn-sm.btn-info').click(function() {
+    $('div.btn.btn-sm.btn-info.btn-ch').click(function() {
         $(this).toggleClass('btn-gray');
         console.log($(this));
     });
 
-    $('div.btn.btn-sm.btn-warning').click(function() {
+    $('div.btn.btn-sm.btn-warning.btn-ch').click(function() {
         $(this).toggleClass('btn-gray');
         console.log($(this));
     });

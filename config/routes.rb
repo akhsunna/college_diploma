@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     get 'delete'
     put 'subject'
     get 'invite_codes'
+    get 'create_invite_codes'
+    post 'create_invite_codess'
   end
 
   post '/groups/export', to: 'groups#export', as: 'groups_export'
