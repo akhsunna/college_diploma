@@ -17,9 +17,9 @@ class SubFile < ActiveRecord::Base
   end
 
   IMAGE_TYPES = ['png','jpeg','jpg']
-  DOC_TYPES = ['doc','docx','msword']
+  DOC_TYPES = ['doc','docx','msword','vnd.openxmlformats-officedocument.wordprocessingml.document']
   CODE_TYPES = ['rb','py','javascript','js','octet-stream']
-  VIDEO_TYPES = ['mp4']
+  VIDEO_TYPES = ['mp4','video/x-msvideo','x-msvideo']
   AUDIO_TYPES = ['mp3']
   ARCHIVE_TYPES = ['rar','x-rar','zip']
   PRESENTATION_TYPES = ['vnd.openxmlformats-officedocument.presentationml.presentation', 'vnd.ms-powerpoint']

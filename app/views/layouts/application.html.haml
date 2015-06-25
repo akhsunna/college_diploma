@@ -23,6 +23,9 @@
                 %li= link_to 'Групи', groups_path
                 %li= link_to 'Викладачі', teachers_path
               %li= link_to 'Предмети', subjects_path
+              - if current_user.teacher?
+                %li=link_to 'Викладачі', teachers_path
+                %li= link_to 'Студенти', students_path
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', href: '', role: 'button'}

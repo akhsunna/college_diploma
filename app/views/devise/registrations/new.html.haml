@@ -13,8 +13,8 @@
 
         .field= f.email_field :email, placeholder: 'Email', class: 'form-control'
 
-        .field= f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {}, onChange: 'changeUserStatus();', class: 'btn btn-default dropdown-toggle')
-        .field= f.collection_select(:group_id, Group.all, :id, :name, {include_blank: true}, {class: 'btn btn-default dropdown-toggle'})
+        .field= f.select(:role, [['Студент', 'student'], ['Викладач', 'teacher']], {}, onChange: 'changeUserStatus();', class: 'btn btn-default dropdown-toggle form-control')
+        .field= f.collection_select(:group_id, Group.all, :id, :name, {include_blank: true}, {class: 'btn btn-default dropdown-toggle form-control'})
 
         .field= text_field_tag :token, '', placeholder: 'token', class: 'form-control'
 

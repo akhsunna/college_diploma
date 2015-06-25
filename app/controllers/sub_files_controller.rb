@@ -93,9 +93,7 @@ class SubFilesController < ApplicationController
       @slides2.map!{|item| item=item.partition("public")[2]}
       render 'sub_files/show/show_presentation'
     else
-
-
-
+      render 'sub_files/show/show_code'
     end
   end
 
